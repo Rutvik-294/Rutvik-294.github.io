@@ -307,7 +307,7 @@
         function apply(x) {
             const p = maxScroll ? x / maxScroll : 0;
             hfill.style.width = (p * 100) + "%";
-            const idx = Math.min(Math.floor(p * projectCount), projectCount);
+            const idx = Math.max(0, Math.min(Math.round(p * projectCount), projectCount));
             hcur.textContent = String(idx).padStart(2, "0");
 
             // entrance flow: panels settle as they approach center
