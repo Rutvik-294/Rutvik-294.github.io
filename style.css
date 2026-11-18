@@ -881,6 +881,52 @@ html.js .vpanel.active .vmeta {
     white-space: nowrap;
 }
 
+/* ---------- PoR highlight ---------- */
+.por-banner {
+    position: relative;
+    border-top: 1px solid var(--border);
+    padding: 30px 0 6px;
+    background: var(--bg);
+}
+
+.por-banner::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background: var(--grad);
+}
+
+.por-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.por-banner h3 {
+    font-family: "Syne", sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-top: -0.35em;
+}
+
+.por-banner .date {
+    font-size: 0.72rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text);
+}
+
+.por-banner .clean-list { margin-top: 14px; max-width: 72ch; }
+
 /* ---------- Skills ---------- */
 .skills-category { margin-bottom: 18px; }
 .skills-category:last-child { margin-bottom: 0; }
