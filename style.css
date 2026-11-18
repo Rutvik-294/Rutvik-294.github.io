@@ -751,7 +751,20 @@ section { margin-bottom: 110px; }
 .vpanel:hover .vnum,
 .vpanel.active .vnum { opacity: 0.42; }
 
-.vpanel .badge-new { top: -9px; left: auto; right: 0; z-index: 3; }
+.badge-new {
+    position: absolute;
+    top: -9px;
+    right: 0;
+    z-index: 3;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.56rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: #07131c;
+    background: var(--grad);
+    padding: 4px 10px;
+    border-radius: 999px;
+}
 
 .vpanel-head {
     position: relative;
