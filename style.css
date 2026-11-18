@@ -1133,7 +1133,7 @@ html.js .reveal.visible { opacity: 1; transform: translateY(0); }
 @media (max-width: 640px) {
     /* hero: keep the name on its lines, kicker on one line */
     .hero-kicker { font-size: 0.6rem; letter-spacing: 0.16em; }
-    .hero-title { font-size: clamp(2.8rem, 15.5vw, 10.5rem); }
+    .hero-title { font-size: clamp(2.8rem, 13.5vw, 10.5rem); }
     .hero-title .word { white-space: nowrap; }
 
     /* compact rows: no forced 44vh, meta follows content */
