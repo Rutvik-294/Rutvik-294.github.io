@@ -210,6 +210,14 @@
         });
     });
 
+    /* wrap panel titles for the wipe reveal */
+    document.querySelectorAll(".hpanel-head h3").forEach((h3) => {
+        const span = document.createElement("span");
+        span.className = "h3t";
+        while (h3.firstChild) span.appendChild(h3.firstChild);
+        h3.appendChild(span);
+    });
+
     /* ---------- reveals + counters ---------- */
     const io = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -286,24 +294,50 @@
     if (hscroll && htrack) {
         let scrub = false, maxScroll = 0, secTop = 0, target = 0, cur = -1;
         let rafId = null, sectionVisible = false, projectCount = 0;
+        let wallPanels = [], lastY = 0, vel = 0, lastApplied = -1;
 
         const canScrub = () => innerWidth > 900 && !reducedMotion;
 
+        function setTransform(x, sk) {
+            htrack.style.transform = sk
+                ? `translate3d(${-x}px, 0, 0) skewY(${sk}deg)`
+                : `translate3d(${-x}px, 0, 0)`;
+        }
+
         function apply(x) {
-            htrack.style.transform = `translate3d(${-x}px, 0, 0)`;
             const p = maxScroll ? x / maxScroll : 0;
             hfill.style.width = (p * 100) + "%";
             const idx = Math.min(Math.floor(p * projectCount), projectCount);
             hcur.textContent = String(idx).padStart(2, "0");
+
+            // entrance flow: panels settle as they approach center
+            const half = innerWidth * 0.55;
+            for (const wp of wallPanels) {
+                if (wp.el.classList.contains("hidden")) continue;
+                const d = wp.x + wp.w / 2 - x - innerWidth / 2;
+                const t = Math.max(0, 1 - Math.abs(d) / half);
+                wp.el.style.setProperty("--sx", ((1 - t) * 90).toFixed(1) + "px");
+                wp.el.style.setProperty("--sk", ((1 - t) * 3).toFixed(2) + "deg");
+                wp.el.style.setProperty("--op", (0.3 + 0.7 * t).toFixed(3));
+                wp.el.style.setProperty("--nx", ((1 - t) * -40).toFixed(1) + "px");
+                wp.el.classList.toggle("active", t > 0.45);
+            }
         }
 
         function layout() {
             scrub = canScrub();
             hscroll.classList.toggle("scrub", scrub);
+            wallPanels = Array.from(htrack.querySelectorAll(".hpanel")).map((el) => ({
+                el, x: el.offsetLeft, w: el.offsetWidth
+            }));
             if (!scrub) {
                 hscroll.style.height = "";
                 htrack.style.transform = "";
                 cur = -1;
+                wallPanels.forEach((wp) => {
+                    ["--sx", "--sk", "--op", "--nx"].forEach((v) => wp.el.style.removeProperty(v));
+                    wp.el.classList.add("active");
+                });
                 return;
             }
             projectCount = htrack.querySelectorAll(".hpanel[data-cat]:not(.hidden)").length;
@@ -319,18 +353,25 @@
             const total = hscroll.offsetHeight - innerHeight;
             const p = Math.min(Math.max((scrollY - secTop) / total, 0), 1);
             target = p * maxScroll;
-            if (!sectionVisible) { cur = target; apply(cur); }
+            if (!sectionVisible) { cur = target; setTransform(cur); apply(cur); }
         }
 
         function loop() {
-            if (Math.abs(target - cur) > 0.5) {
-                cur = lerp(cur, target, 0.12);
+            // velocity skew — the scroll-distortion feel from the reference
+            const y = scrollY;
+            vel = lerp(vel, y - lastY, 0.12);
+            lastY = y;
+            const sk = Math.max(-2.2, Math.min(2.2, vel * 0.05));
+            cur = lerp(cur, target, 0.12);
+            if (Math.abs(cur - lastApplied) > 0.1 || Math.abs(sk) > 0.01 || lastApplied < 0) {
+                lastApplied = cur;
+                setTransform(cur, Math.abs(sk) > 0.005 ? sk : 0);
                 apply(cur);
             }
             rafId = requestAnimationFrame(loop);
         }
 
-        const start = () => { if (scrub && !rafId) { sectionVisible = true; rafId = requestAnimationFrame(loop); } };
+        const start = () => { if (scrub && !rafId) { sectionVisible = true; lastY = scrollY; rafId = requestAnimationFrame(loop); } };
         const stop = () => { sectionVisible = false; if (rafId) { cancelAnimationFrame(rafId); rafId = null; } };
 
         new IntersectionObserver((en) => en[0].isIntersecting ? start() : stop(),

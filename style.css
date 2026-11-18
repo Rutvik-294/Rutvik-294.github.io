@@ -729,6 +729,10 @@ section { margin-bottom: 110px; }
     flex-direction: column;
     /* occlude any neighbor overflow — keeps the wall clean */
     background: var(--bg);
+    /* entrance flow (driven by JS during scrub) */
+    transform: translate3d(var(--sx, 0px), var(--sy, 0px), 0) skewY(var(--sk, 0deg));
+    opacity: var(--op, 1);
+    will-change: transform, opacity;
 }
 
 /* gradient sweep on the top rule */
@@ -853,6 +857,42 @@ section { margin-bottom: 110px; }
     max-width: 48ch;
 }
 
+/* ---- Lusion-style reveals: wipe title, fade content as panels flow in ---- */
+html.js .h3t {
+    display: inline-block;
+    clip-path: inset(-0.3em 102% -0.3em -0.1em);
+    transition: clip-path 0.75s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+html.js .hpanel.active .h3t {
+    clip-path: inset(-0.3em -0.1em -0.3em -0.1em);
+}
+
+html.js .hpanel .hdesc,
+html.js .hpanel .hpanel-meta,
+html.js .hint-panel .hint-big,
+html.js .hint-panel .hint-small {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.45s ease 0.14s, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.14s;
+}
+
+html.js .hpanel.active .hdesc,
+html.js .hpanel.active .hpanel-meta {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0.22s;
+}
+
+html.js .hint-panel.active .hint-big,
+html.js .hint-panel.active .hint-small {
+    opacity: 1;
+    transform: none;
+}
+
+/* ghost number counter-drift */
+.hnum { transform: translateX(var(--nx, 0px)); }
+
 .hpanel-meta {
     position: relative;
     z-index: 1;
@@ -957,8 +997,9 @@ section { margin-bottom: 110px; }
     will-change: transform;
 }
 
-.hscroll.scrub .hpanel:nth-child(odd):not(.hint-panel) { transform: translateY(4vh); }
-.hscroll.scrub .hpanel:nth-child(even) { transform: translateY(-3vh); }
+/* stagger as CSS var so JS transform composition stays clean */
+.hscroll.scrub .hpanel:nth-child(odd):not(.hint-panel) { --sy: 4vh; }
+.hscroll.scrub .hpanel:nth-child(even) { --sy: -3vh; }
 
 .hscroll.scrub .hfooter {
     position: absolute;
@@ -969,7 +1010,6 @@ section { margin-bottom: 110px; }
 }
 
 /* stagger would clip inside a native scroller */
-.hscroll:not(.scrub) .hpanel:nth-child(n) { transform: none; }
 .hscroll:not(.scrub) .hprogress { visibility: hidden; }
 
 .tag-row { display: flex; flex-wrap: wrap; gap: 7px; }
