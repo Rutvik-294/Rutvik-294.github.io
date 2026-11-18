@@ -1128,3 +1128,24 @@ html.js .reveal.visible { opacity: 1; transform: translateY(0); }
     .hero-status { flex-direction: column; align-items: flex-start; gap: 8px; }
     .status-sep { display: none; }
 }
+
+/* ---------- phone-specific flow tweaks ---------- */
+@media (max-width: 640px) {
+    /* compact rows: no forced 44vh, meta follows content */
+    .vpanel { min-height: 0; padding: 6px 0 42px; }
+    .vpanel-head h3 { font-size: 2.05rem; }
+    .vpanel .vmeta { padding-top: 20px; }
+    .vlink { font-size: 1.1rem; }
+    .vdesc { font-size: 1.02rem; margin-top: 14px; }
+
+    /* small corner ghost number, clear of badge + title */
+    .vnum { font-size: 2.6rem; top: -0.12em; right: 60px; opacity: 0.1; }
+    .vpanel.active .vnum,
+    .vpanel:hover .vnum { opacity: 0.26; }
+
+    .por-banner h3 { font-size: 1.9rem; }
+    .por-banner { padding: 24px 0 2px; }
+    .stat { padding: 14px 10px; }
+    .stat-num { font-size: 1.35rem; }
+    .card { border-radius: 14px; }
+}
