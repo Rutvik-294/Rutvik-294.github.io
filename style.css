@@ -510,9 +510,9 @@ body.ready .hero-cta { transition-delay: 0.74s; }
 
 /* ---------- Layout ---------- */
 .container {
-    max-width: 1160px;
+    max-width: none;
     margin: 0 auto;
-    padding: 30px 6vw 30px;
+    padding: 30px 5vw 40px;
 }
 
 section { margin-bottom: 110px; }
@@ -542,7 +542,7 @@ section { margin-bottom: 110px; }
 .sec-title {
     font-family: "Syne", sans-serif;
     font-weight: 800;
-    font-size: clamp(2rem, 5.4vw, 3.6rem);
+    font-size: clamp(2.4rem, 6vw, 4.6rem);
     letter-spacing: -0.01em;
     text-transform: uppercase;
     line-height: 1.05;
@@ -706,7 +706,11 @@ section { margin-bottom: 110px; }
 .vpanel {
     position: relative;
     border-top: 1px solid var(--border);
-    padding: 10px 0 44px;
+    padding: 16px 0 60px;
+    min-height: 44vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     background: var(--bg);
 }
 
@@ -729,12 +733,12 @@ section { margin-bottom: 110px; }
 /* ghost index number, top-right, parallax via --ny */
 .vnum {
     position: absolute;
-    top: -0.16em;
-    right: 96px;
+    top: -0.14em;
+    right: 110px;
     z-index: 0;
     font-family: "Syne", sans-serif;
     font-weight: 800;
-    font-size: clamp(4rem, 8vw, 7.2rem);
+    font-size: clamp(4.5rem, 10vw, 9.5rem);
     line-height: 1;
     color: transparent;
     -webkit-text-stroke: 1px var(--stroke);
@@ -778,7 +782,7 @@ section { margin-bottom: 110px; }
 .vpanel-head h3 {
     font-family: "Syne", sans-serif;
     font-weight: 800;
-    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-size: clamp(2.4rem, 5.5vw, 5rem);
     line-height: 0.95;
     letter-spacing: -0.02em;
     text-transform: uppercase;
@@ -821,15 +825,16 @@ section { margin-bottom: 110px; }
     position: relative;
     z-index: 1;
     color: var(--muted);
-    font-size: 0.95rem;
-    margin-top: 20px;
-    max-width: 62ch;
+    font-size: 1rem;
+    margin-top: 22px;
+    max-width: 68ch;
 }
 
 .vmeta {
     position: relative;
     z-index: 1;
-    margin-top: 26px;
+    margin-top: auto;
+    padding-top: 30px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -841,7 +846,7 @@ section { margin-bottom: 110px; }
     .vpanel:nth-child(even) .vpanel-head,
     .vpanel:nth-child(even) .vdesc,
     .vpanel:nth-child(even) .vmeta {
-        margin-left: clamp(40px, 9vw, 150px);
+        margin-left: clamp(40px, 12vw, 240px);
     }
 }
 
