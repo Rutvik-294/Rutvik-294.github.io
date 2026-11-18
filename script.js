@@ -287,7 +287,7 @@
         let scrub = false, maxScroll = 0, secTop = 0, target = 0, cur = -1;
         let rafId = null, sectionVisible = false, projectCount = 0;
 
-        const canScrub = () => innerWidth > 900 && finePointer && !reducedMotion;
+        const canScrub = () => innerWidth > 900 && !reducedMotion;
 
         function apply(x) {
             htrack.style.transform = `translate3d(${-x}px, 0, 0)`;

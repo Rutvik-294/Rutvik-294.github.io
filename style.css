@@ -901,10 +901,14 @@ section { margin-bottom: 110px; }
 
 .hhint { white-space: nowrap; }
 
-/* scrub mode (desktop, fine pointer, motion allowed) — set by JS */
+/* scrub mode (desktop viewport, motion allowed) — set by JS */
 .hscroll.scrub .hsticky {
     position: sticky;
     top: 0;
+    /* full-bleed: escape the centered container */
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    height: 100vh;
     height: 100svh;
     display: flex;
     flex-direction: column;
