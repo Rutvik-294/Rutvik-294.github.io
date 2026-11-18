@@ -1,40 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rutvik Sai | Software Engineer</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Rutvik Sai | CSE @ IIT Bombay</title>
+    <meta name="description" content="Rutvik Sai — B.Tech CSE @ IIT Bombay. Builder, problem solver, quant enthusiast.">
+    <meta name="color-scheme" content="dark light">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2367e8f9'/%3E%3Cstop offset='1' stop-color='%23a78bfa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%23070b12'/%3E%3Ctext x='32' y='44' font-family='monospace' font-size='34' font-weight='bold' fill='url(%23g)' text-anchor='middle'%3ERS%3C/text%3E%3C/svg%3E">
+    <!-- Fonts: Space Grotesk (display) + Inter (body) + JetBrains Mono (accents) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Apply saved theme before paint to avoid flashing -->
+    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
 </head>
 <body>
 
-    <!-- Floating Theme Toggle -->
-    <button id="theme-toggle" aria-label="Toggle dark mode">
-        <i class="fas fa-moon"></i>
-    </button>
+    <div class="progress-bar" id="progress-bar"></div>
 
-    <div class="container">
-        
-        <!-- HEADER -->
-        <header>
+    <!-- NAV -->
+    <nav class="nav">
+        <a href="#top" class="logo">rs<span class="accent">.</span>294</a>
+        <div class="nav-links">
+            <a href="#education">Education</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <button id="theme-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero" id="top">
+        <canvas id="net" aria-hidden="true"></canvas>
+        <div class="hero-content">
+            <p class="hero-kicker">// hello, world</p>
             <h1 class="gradient-text">Rutvik Sai</h1>
-            <p class="subtitle">B.Tech in Computer Science & Engineering @ <strong>IIT Bombay</strong></p>
-            <div class="contact-links">
-                <a href="mailto:rutviksai18@gmail.com"><i class="fas fa-envelope"></i> rutviksai18@gmail.com</a>
-                <a href="tel:+919381757804"><i class="fas fa-phone"></i> +91-9381757804</a>
-                <a href="https://github.com/Rutvik-294" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                <a href="https://codeforces.com/profile/RutvikSai" target="_blank"><i class="fas fa-code"></i> Codeforces</a>
-                <a href="https://www.linkedin.com/in/rutviksai18/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <p class="hero-line">
+                B.Tech CSE @ <strong>IIT Bombay</strong> <span class="accent">·</span>
+                <span id="typewriter"></span><span class="type-cursor">▌</span>
+            </p>
+            <div class="hero-cta">
+                <a class="btn" href="mailto:rutviksai18@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                <a class="btn" href="https://github.com/Rutvik-294" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a class="btn" href="https://www.linkedin.com/in/rutviksai18/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a class="btn" href="https://codeforces.com/profile/RutvikSai" target="_blank"><i class="fas fa-code"></i> Codeforces</a>
             </div>
-        </header>
+        </div>
+        <a class="scroll-cue" href="#education" aria-label="Scroll down"><i class="fas fa-chevron-down"></i></a>
+    </header>
 
-        <!-- EDUCATION & HONORS (Two Columns) -->
-        <div class="two-column">
-            <section class="card">
+    <main class="container">
+
+        <!-- EDUCATION & PROGRAMS -->
+        <div class="two-column" id="education">
+            <section class="card reveal">
                 <div class="section-header">
                     <i class="fas fa-graduation-cap icon"></i>
                     <h2>Education</h2>
@@ -44,95 +69,225 @@
                     <span class="date">2025 — 2029</span>
                 </div>
                 <p>B.Tech in Computer Science and Engineering</p>
-                <div class="highlight-metric">CPI: 8.74/10</div>
+                <div class="mono-line">focus: systems · quant · machine learning</div>
             </section>
 
-            <section class="card">
+            <section class="card reveal">
                 <div class="section-header">
                     <i class="fas fa-award icon"></i>
-                    <h2>Honors & Programs</h2>
+                    <h2>Honors &amp; Programs</h2>
                 </div>
                 <div class="item-header">
                     <h3>Jane Street FTTP</h3>
                     <span class="date">May 2026</span>
                 </div>
                 <p class="location"><i class="fas fa-map-marker-alt"></i> Hong Kong</p>
-                <ul class="clean-list">
+                <ul class="clean-list compact">
                     <li>Selected as one of the few students globally for the intensive First-Year Trading and Technology Programme.</li>
                     <li>Explored quantitative trading strategies, mathematical modeling, and high-performance technology.</li>
                 </ul>
+                <hr class="divider">
+                <div class="item-header">
+                    <h3>Optiver Future Focus Program <span class="pulse-dot" title="Upcoming"></span></h3>
+                    <span class="date">Nov 30 — Dec 5, 2026</span>
+                </div>
+                <p>Selected for Optiver's Future Focus Program — a week-long immersion into quantitative trading, markets, and the technology behind modern market making.</p>
             </section>
         </div>
 
         <!-- PROJECTS -->
-        <section>
+        <section id="projects" class="reveal">
             <div class="section-header">
                 <i class="fas fa-laptop-code icon"></i>
-                <h2>Key Projects</h2>
+                <h2>Projects</h2>
             </div>
-            
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-header">
+            <div class="filters" id="filters">
+                <button class="chip active" data-filter="all">All</button>
+                <button class="chip" data-filter="aiml">AI / ML</button>
+                <button class="chip" data-filter="systems">Systems</button>
+                <button class="chip" data-filter="web">Web</button>
+                <button class="chip" data-filter="hardware">Hardware</button>
+                <button class="chip" data-filter="course">Coursework</button>
+            </div>
+
+            <div class="projects-grid" id="projects-grid">
+
+                <!-- SATviz -->
+                <article class="project-card" data-cat="systems">
+                    <span class="badge-new">NEW</span>
+                    <div class="project-top">
+                        <h3>SATviz</h3>
+                        <div class="project-links"></div>
+                    </div>
+                    <p class="project-desc">Two dependency-free SAT solvers — CDCL &amp; DPLL — packaged as a runnable JAR, plus a Swing visualizer that animates how each one thinks: implication graphs, clause learning, conflicts pulsing rose, and backjumps sweeping in real time.</p>
+                    <div class="project-meta">
+                        <div class="tag-row"><span class="tag">Java</span><span class="tag">CDCL</span><span class="tag">DPLL</span><span class="tag">Swing</span></div>
+                        <span class="proj-date">Nov 2026</span>
+                    </div>
+                </article>
+
+                <!-- pysat -->
+                <article class="project-card" data-cat="systems">
+                    <span class="badge-new">NEW</span>
+                    <div class="project-top">
+                        <h3>pysat</h3>
+                        <div class="project-links"></div>
+                    </div>
+                    <p class="project-desc">A conflict-driven clause-learning SAT solver implementing the MiniSat architecture in ~600 lines of dependency-free Python, with an interactive terminal visualizer animating CDCL and DPLL search step by step.</p>
+                    <div class="project-meta">
+                        <div class="tag-row"><span class="tag">Python</span><span class="tag">CDCL</span><span class="tag">Algorithms</span></div>
+                        <span class="proj-date">Nov 2026</span>
+                    </div>
+                </article>
+
+                <!-- NPOPS -->
+                <article class="project-card" data-cat="systems">
+                    <span class="badge-new">NEW</span>
+                    <div class="project-top">
+                        <h3>NPOPS</h3>
+                        <div class="project-links"></div>
+                    </div>
+                    <p class="project-desc">North Pole Operations Platform — an enterprise logistics &amp; manufacturing SaaS for Santa's Workshop: vehicle-route optimization for the global delivery run, MRP production scheduling, inventory control, and live sleigh tracking. All in one zero-dependency Python package.</p>
+                    <div class="project-meta">
+                        <div class="tag-row"><span class="tag">Python</span><span class="tag">Optimization</span><span class="tag">SaaS</span></div>
+                        <span class="proj-date">Nov 2026</span>
+                    </div>
+                </article>
+
+                <!-- CSEA Meme Arena -->
+                <article class="project-card" data-cat="web">
+                    <span class="badge-new">NEW</span>
+                    <div class="project-top">
+                        <h3>CSEA Meme Arena</h3>
+                        <div class="project-links">
+                            <a href="https://github.com/Rutvik-294/CSEA" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <p class="project-desc">Meme-sharing and voting platform for the CSE department at IIT Bombay — head-to-head Elo-rated meme battles, leaderboards, presigned S3 uploads, and admin moderation with LDAP auth.</p>
+                    <div class="project-meta">
+                        <div class="tag-row"><span class="tag">Next.js 14</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">LDAP</span></div>
+                        <span class="proj-date">Nov 2026</span>
+                    </div>
+                </article>
+
+                <!-- duochat -->
+                <article class="project-card" data-cat="web">
+                    <span class="badge-new">NEW</span>
+                    <div class="project-top">
+                        <h3>Glass Messenger (duochat)</h3>
+                        <div class="project-links">
+                            <a href="https://github.com/Rutvik-294/duochat" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <p class="project-desc">Real-time chat application built and iterated end-to-end — from backend logic to a polished glass-morphic frontend, heading toward full-scale deployment.</p>
+                    <div class="project-meta">
+                        <div class="tag-row"><span class="tag">JavaScript</span><span class="tag">HTML/CSS</span><span class="tag">Real-time</span></div>
+                        <span class="proj-date">Fall 2026</span>
+                    </div>
+                </article>
+
+                <!-- Catan agent -->
+                <article class="project-card" data-cat="aiml">
+                    <span class="badge-new">NEW</span>
+                    <div class="project-top">
+                        <h3>Catan AI Agent</h3>
+                        <div class="project-links"></div>
+                    </div>
+                    <p class="project-desc">PIMC agent built on the catanatron engine for a Catan hackathon — samples K complete hidden-information worlds per decision, scores actions by mean value-function payoff, and time-budgets every move inside a strict ~12.5 ms clock.</p>
+                    <div class="project-meta">
+                        <div class="tag-row"><span class="tag">Python</span><span class="tag">Game AI</span><span class="tag">Search</span></div>
+                        <span class="proj-date">Oct 2026</span>
+                    </div>
+                </article>
+
+                <!-- SOC LLM -->
+                <article class="project-card" data-cat="aiml">
+                    <div class="project-top">
                         <h3>Tokens to Translations (LLM)</h3>
-                        <a href="https://github.com/Rutvik-294/SOC_Tokens_to_Translations" target="_blank"><i class="fab fa-github"></i></a>
+                        <div class="project-links">
+                            <a href="https://github.com/Rutvik-294/SOC_Tokens_to_Translations" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
-                    <span class="tag">Seasons of Code</span> <span class="tag">Summer 2026</span>
-                    <p>Developed a language model from scratch, focusing on text tokenization, embedding generation, and translation mechanisms.</p>
-                </div>
+                    <p class="project-desc">Developed a language model from scratch, focusing on text tokenization, embedding generation, and translation mechanisms.</p>
+                    <div class="project-meta">
+                        <div class="tag-row"><span class="tag">Seasons of Code</span><span class="tag">LLM</span></div>
+                        <span class="proj-date">Summer 2026</span>
+                    </div>
+                </article>
 
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-header">
+                <!-- RL -->
+                <article class="project-card" data-cat="aiml">
+                    <div class="project-top">
                         <h3>Reinforcement Learning</h3>
+                        <div class="project-links"></div>
                     </div>
-                    <span class="tag">Seasons of Science</span> <span class="tag">Summer 2026</span>
-                    <p>Explored and implemented fundamental RL algorithms. Modeled decision-making agents to optimize dynamic control tasks.</p>
-                </div>
+                    <p class="project-desc">Explored and implemented fundamental RL algorithms. Modeled decision-making agents to optimize dynamic control tasks.</p>
+                    <div class="project-meta">
+                        <div class="tag-row"><span class="tag">Seasons of Science</span><span class="tag">RL</span></div>
+                        <span class="proj-date">Summer 2026</span>
+                    </div>
+                </article>
 
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-header">
+                <!-- Snake Stack -->
+                <article class="project-card" data-cat="web">
+                    <div class="project-top">
                         <h3>Full-Stack Snake Game</h3>
-                        <a href="https://github.com/Rutvik-294/Snake_Stack" target="_blank"><i class="fab fa-github"></i></a>
+                        <div class="project-links">
+                            <a href="https://github.com/Rutvik-294/Snake_Stack" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
-                    <span class="tag">Python</span> <span class="tag">Flask</span> <span class="tag">JavaScript</span>
-                    <p>Developed a multi-layered game using a three-tier architecture (Client-Server-Database) with real-time gameplay.</p>
-                </div>
+                    <p class="project-desc">Developed a multi-layered game using a three-tier architecture (Client-Server-Database) with real-time gameplay.</p>
+                    <div class="project-meta">
+                        <div class="tag-row"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">JavaScript</span></div>
+                        <span class="proj-date">2026</span>
+                    </div>
+                </article>
 
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <div class="project-header">
+                <!-- Snitch -->
+                <article class="project-card" data-cat="course">
+                    <div class="project-top">
                         <h3>Business Case Study: Snitch</h3>
+                        <div class="project-links"></div>
                     </div>
-                    <span class="tag">ENT Course</span> <span class="tag">2025</span>
-                    <p>Analyzed D2C market penetration. Developed a professional Pitch Deck and video synthesizing financial growth strategies.</p>
-                </div>
+                    <p class="project-desc">Analyzed D2C market penetration. Developed a professional Pitch Deck and video synthesizing financial growth strategies.</p>
+                    <div class="project-meta">
+                        <div class="tag-row"><span class="tag">ENT Course</span></div>
+                        <span class="proj-date">2025</span>
+                    </div>
+                </article>
 
-                <!-- Project 5 -->
-                <div class="project-card">
-                    <div class="project-header">
+                <!-- XLR8 -->
+                <article class="project-card" data-cat="hardware">
+                    <div class="project-top">
                         <h3>Autonomous Robot (XLR8)</h3>
+                        <div class="project-links"></div>
                     </div>
-                    <span class="tag">Arduino</span> <span class="tag">Raspberry Pi</span>
-                    <p>Built a controlled robot with IR sensors for obstacle detection. Developed embedded code for competitive navigation.</p>
-                </div>
+                    <p class="project-desc">Built a controlled robot with IR sensors for obstacle detection. Developed embedded code for competitive navigation.</p>
+                    <div class="project-meta">
+                        <div class="tag-row"><span class="tag">Arduino</span><span class="tag">Raspberry Pi</span></div>
+                        <span class="proj-date">2025</span>
+                    </div>
+                </article>
 
-                <!-- Project 6 -->
-                <div class="project-card">
-                    <div class="project-header">
+                <!-- MS101 -->
+                <article class="project-card" data-cat="hardware">
+                    <div class="project-top">
                         <h3>Load-Dumping Robot (MS101)</h3>
+                        <div class="project-links"></div>
                     </div>
-                    <span class="tag">Robotics</span> <span class="tag">2025</span>
-                    <p>Collaborated to engineer a chassis and mechanical dumping mechanism using motor drivers for stable locomotion under load.</p>
-                </div>
+                    <p class="project-desc">Collaborated to engineer a chassis and mechanical dumping mechanism using motor drivers for stable locomotion under load.</p>
+                    <div class="project-meta">
+                        <div class="tag-row"><span class="tag">Robotics</span></div>
+                        <span class="proj-date">2025</span>
+                    </div>
+                </article>
+
             </div>
         </section>
 
-        <!-- SKILLS & ACHIEVEMENTS (Two Columns) -->
-        <div class="two-column">
-            <section class="card">
+        <!-- SKILLS & ACHIEVEMENTS -->
+        <div class="two-column" id="skills">
+            <section class="card reveal">
                 <div class="section-header">
                     <i class="fas fa-terminal icon"></i>
                     <h2>Technical Skills</h2>
@@ -140,40 +295,43 @@
                 <div class="skills-category">
                     <strong>Programming</strong>
                     <div class="skill-tags">
-                        <span>C++</span> <span>Python</span> <span>C</span> <span>JavaScript</span> <span>Bash</span>
+                        <span>C++</span> <span>Python</span> <span>C</span> <span>JavaScript</span> <span>Bash</span> <span>Java</span>
                     </div>
                 </div>
                 <div class="skills-category">
                     <strong>Web Development</strong>
                     <div class="skill-tags">
-                        <span>HTML</span> <span>CSS</span> <span>Flask</span>
+                        <span>HTML</span> <span>CSS</span> <span>Flask</span> <span>Next.js</span> <span>TypeScript</span>
                     </div>
                 </div>
                 <div class="skills-category">
-                    <strong>Tools & Software</strong>
+                    <strong>Tools &amp; Software</strong>
                     <div class="skill-tags">
                         <span>Git/GitHub</span> <span>LaTeX</span> <span>Arduino</span> <span>Fusion 360</span> <span>DaVinci Resolve</span>
                     </div>
                 </div>
             </section>
 
-            <section class="card">
+            <section class="card reveal">
                 <div class="section-header">
                     <i class="fas fa-trophy icon"></i>
                     <h2>Achievements</h2>
                 </div>
-                <ul class="clean-list achievement-list">
-                    <li><strong>JEE Advanced:</strong> AIR 18 (among 250,000+ candidates)</li>
-                    <li><strong>JEE Main:</strong> AIR 294 (99.98%tile, 1M+ students)</li>
-                    <li><strong>Physics Olympiad:</strong> Selected for OCSC (Top 20 in India)</li>
-                    <li><strong>National Olympiads:</strong> INPhO (45/75), NSEC (185/216) & selected for INChO</li>
+                <div class="stat-grid">
+                    <div class="stat"><span class="stat-num">AIR 18</span><span class="stat-label">JEE Advanced</span></div>
+                    <div class="stat"><span class="stat-num">AIR 294</span><span class="stat-label">JEE Main · 99.98%ile</span></div>
+                    <div class="stat"><span class="stat-num">Top 20</span><span class="stat-label">OCSC Physics Selection</span></div>
+                    <div class="stat"><span class="stat-num">Rank 9</span><span class="stat-label">AP EAMCET</span></div>
+                </div>
+                <ul class="clean-list compact achievement-list">
+                    <li><strong>Olympiads:</strong> INPhO (45/75), NSEC (185/216) &amp; selected for INChO</li>
                     <li><strong>State Ranks:</strong> AP EAMCET (Rank 9), TS EAMCET (Rank 45)</li>
                 </ul>
             </section>
         </div>
 
         <!-- POSITIONS OF RESPONSIBILITY -->
-        <section class="card">
+        <section class="card reveal" id="por">
             <div class="section-header">
                 <i class="fas fa-users icon"></i>
                 <h2>Positions of Responsibility</h2>
@@ -182,11 +340,26 @@
                 <h3>Social Secretary, CSEA</h3>
                 <span class="date">2026 — 2027</span>
             </div>
-            <p>Elected to lead social initiatives for the CSE department at IIT Bombay. Organizing department-wide fests, networking sessions, and workshops in coordination with the council.</p>
+            <p>Elected to lead social initiatives for the CSE department at IIT Bombay. Organizing department-wide fests, networking sessions, and workshops — including shipping the CSEA Meme Arena for the department.</p>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="card contact-card reveal" id="contact">
+            <div class="section-header">
+                <i class="fas fa-paper-plane icon"></i>
+                <h2>Get in Touch</h2>
+            </div>
+            <p>Always happy to talk about code, markets, or new ideas.</p>
+            <div class="hero-cta">
+                <a class="btn" href="mailto:rutviksai18@gmail.com"><i class="fas fa-envelope"></i> rutviksai18@gmail.com</a>
+                <a class="btn" href="tel:+919381757804"><i class="fas fa-phone"></i> +91-9381757804</a>
+                <a class="btn" href="https://github.com/Rutvik-294" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a class="btn" href="https://www.linkedin.com/in/rutviksai18/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
         </section>
 
         <footer>
-            <p>&copy; 2026 Rutvik Sai. Built from scratch.</p>
+            <p>&copy; <span id="year">2026</span> Rutvik Sai · built from scratch · <a href="https://github.com/Rutvik-294/Rutvik-294.github.io" target="_blank">view source <i class="fab fa-github"></i></a></p>
         </footer>
 
     </div>
