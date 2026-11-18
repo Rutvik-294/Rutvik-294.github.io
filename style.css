@@ -669,37 +669,6 @@ section { margin-bottom: 110px; }
 
 .clean-list.compact li { margin-bottom: 7px; font-size: 0.89rem; }
 
-/* ---------- Filters ---------- */
-.filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-
-.chip {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 9px 18px;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--muted);
-    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-    will-change: transform;
-}
-
-.chip:hover { color: var(--text); border-color: var(--accent); }
-
-.chip.active {
-    background: var(--grad);
-    color: #07131c;
-    border-color: transparent;
-    font-weight: 700;
-}
-
 /* ---------- Projects: vertical editorial flow ---------- */
 .vwall { position: relative; }
 

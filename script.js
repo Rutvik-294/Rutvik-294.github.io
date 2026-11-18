@@ -56,7 +56,7 @@
             requestAnimationFrame(ringLoop);
         })();
 
-        const growSel = "a, button, .chip, .vpanel";
+        const growSel = "a, button, .vpanel";
         document.addEventListener("mouseover", (e) => {
             if (e.target.closest(growSel)) ring.classList.add("grow");
         });
@@ -284,7 +284,6 @@
 
     /* ---------- projects: vertical editorial flow ---------- */
     const vwall = document.getElementById("vwall");
-    let vMeasure = null;
 
     if (vwall) {
         const mainEl = document.querySelector("main");
@@ -337,24 +336,7 @@
         measure();
         if (reducedMotion) panels.forEach((p) => p.el.classList.add("active"));
         else start();
-        vMeasure = measure;
     }
-
-    /* ---------- filters ---------- */
-    const chips = document.querySelectorAll("#filters .chip");
-    const panels = document.querySelectorAll("#vwall .vpanel[data-cat]");
-    chips.forEach((chip) => {
-        chip.addEventListener("click", () => {
-            chips.forEach((c) => c.classList.remove("active"));
-            chip.classList.add("active");
-            const f = chip.dataset.filter;
-            panels.forEach((panel) => panel.classList.toggle("hidden", f !== "all" && panel.dataset.cat !== f));
-            if (vMeasure) {
-                vMeasure();
-                dispatchEvent(new Event("scroll"));
-            }
-        });
-    });
 
     /* ---------- clocks (IST) ---------- */
     const clocks = document.querySelectorAll("[data-clock]");
