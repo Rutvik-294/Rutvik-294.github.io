@@ -744,19 +744,19 @@ section { margin-bottom: 110px; }
 
 .hpanel:hover::before { width: 100%; }
 
-/* ghost index number */
+/* ghost index number — floats above the top rule, clear of all text */
 .hnum {
     position: absolute;
-    top: -0.12em;
+    top: -0.62em;
     right: -2px;
     z-index: 0;
     font-family: "Syne", sans-serif;
     font-weight: 800;
-    font-size: clamp(4.5rem, 7vw, 6.5rem);
+    font-size: clamp(4rem, 5.5vw, 5.6rem);
     line-height: 1;
     color: transparent;
     -webkit-text-stroke: 1px var(--stroke);
-    opacity: 0.13;
+    opacity: 0.16;
     transition: opacity 0.35s ease;
     pointer-events: none;
 }
@@ -766,6 +766,13 @@ section { margin-bottom: 110px; }
 }
 
 .hpanel:hover .hnum { opacity: 0.45; }
+
+/* tighter variant inside the native scroller (less headroom there) */
+.hscroll:not(.scrub) .hnum {
+    top: -0.32em;
+    font-size: clamp(3rem, 9vw, 3.4rem);
+    opacity: 0.12;
+}
 
 .badge-new {
     position: absolute;
