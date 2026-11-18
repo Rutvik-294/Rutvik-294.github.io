@@ -804,7 +804,7 @@ section { margin-bottom: 110px; }
 .hpanel-head h3 {
     font-family: "Syne", sans-serif;
     font-weight: 800;
-    font-size: clamp(2rem, 3.4vw, 3.2rem);
+    font-size: clamp(1.9rem, 2.9vw, 2.6rem);
     line-height: 0.95;
     letter-spacing: -0.02em;
     text-transform: uppercase;
