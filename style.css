@@ -700,43 +700,18 @@ section { margin-bottom: 110px; }
     font-weight: 700;
 }
 
-/* ---------- Projects: horizontal wall ---------- */
-.hscroll { position: relative; }
+/* ---------- Projects: vertical editorial flow ---------- */
+.vwall { position: relative; }
 
-.htrack {
-    display: flex;
-    gap: clamp(30px, 4vw, 72px);
-    padding: 60px 0 10px 6vw;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-}
-
-.htrack::-webkit-scrollbar { display: none; }
-
-.hspacer { flex: 0 0 6vw; }
-
-.hpanel {
+.vpanel {
     position: relative;
-    flex: 0 0 auto;
-    width: clamp(300px, 78vw, 470px);
-    min-height: 340px;
-    scroll-snap-align: center;
     border-top: 1px solid var(--border);
-    padding: 30px 0 8px;
-    display: flex;
-    flex-direction: column;
-    /* occlude any neighbor overflow — keeps the wall clean */
+    padding: 10px 0 44px;
     background: var(--bg);
-    /* entrance flow (driven by JS during scrub) */
-    transform: translate3d(var(--sx, 0px), var(--sy, 0px), 0) skewY(var(--sk, 0deg));
-    opacity: var(--op, 1);
-    will-change: transform, opacity;
 }
 
 /* gradient sweep on the top rule */
-.hpanel::before {
+.vpanel::before {
     content: "";
     position: absolute;
     top: -1px;
@@ -748,271 +723,155 @@ section { margin-bottom: 110px; }
     z-index: 2;
 }
 
-.hpanel:hover::before { width: 100%; }
+.vpanel:hover::before,
+.vpanel.active::before { width: 100%; }
 
-/* ghost index number — floats above the top rule, clear of all text */
-.hnum {
+/* ghost index number, top-right, parallax via --ny */
+.vnum {
     position: absolute;
-    top: -0.62em;
-    right: -2px;
+    top: -0.16em;
+    right: 0;
     z-index: 0;
     font-family: "Syne", sans-serif;
     font-weight: 800;
-    font-size: clamp(4rem, 5.5vw, 5.6rem);
+    font-size: clamp(4rem, 8vw, 7.2rem);
     line-height: 1;
     color: transparent;
     -webkit-text-stroke: 1px var(--stroke);
-    opacity: 0.16;
+    opacity: 0.14;
     transition: opacity 0.35s ease;
+    transform: translateY(var(--ny, 0px));
     pointer-events: none;
 }
 
 @supports not (-webkit-text-stroke: 1px black) {
-    .hnum { color: var(--border); }
+    .vnum { color: var(--border); }
 }
 
-.hpanel:hover .hnum { opacity: 0.45; }
+.vpanel:hover .vnum,
+.vpanel.active .vnum { opacity: 0.42; }
 
-/* tighter variant inside the native scroller (less headroom there) */
-.hscroll:not(.scrub) .hnum {
-    top: -0.32em;
-    font-size: clamp(3rem, 9vw, 3.4rem);
-    opacity: 0.12;
-}
+.vpanel .badge-new { top: -9px; left: 0; right: auto; z-index: 3; }
 
-.badge-new {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.56rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    color: #07131c;
-    background: var(--grad);
-    padding: 4px 10px;
-    border-radius: 999px;
-}
-
-.hpanel .badge-new { top: -9px; left: 0; right: auto; z-index: 3; }
-
-.hpanel-head {
+.vpanel-head {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 14px;
+    gap: 18px;
 }
 
-.hpanel-head h3 {
+.vpanel-head h3 {
     font-family: "Syne", sans-serif;
     font-weight: 800;
-    font-size: clamp(1.9rem, 2.9vw, 2.6rem);
+    font-size: clamp(2.2rem, 5vw, 4rem);
     line-height: 0.95;
     letter-spacing: -0.02em;
     text-transform: uppercase;
-    /* Lusion move: title crosses the top rule */
-    margin-top: -0.45em;
-    position: relative;
-    z-index: 2;
+    /* title crosses the top rule */
+    margin-top: -0.42em;
     transition: color 0.3s ease;
 }
 
-.hpanel:hover .hpanel-head h3 { color: var(--accent); }
+.vpanel:hover .vpanel-head h3 { color: var(--accent); }
 
-/* arrow slides in from the left margin on hover */
-.hpanel-head h3::before {
+/* arrow slides in from the left on hover */
+.vpanel-head h3::before {
     content: "→";
     position: absolute;
-    left: -1.1em;
+    left: -0.85em;
     top: 0;
     opacity: 0;
-    transform: translateX(-12px);
+    transform: translateX(-14px);
     transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     color: var(--accent);
 }
 
-.hpanel:hover .hpanel-head h3::before {
+.vpanel:hover .vpanel-head h3::before {
     opacity: 1;
     transform: translateX(0);
 }
 
-.hlink {
+.vlink {
     color: var(--muted);
-    font-size: 1.12rem;
+    font-size: 1.3rem;
     flex-shrink: 0;
+    margin-top: 0.2em;
     transition: color 0.25s ease, transform 0.25s ease;
     display: inline-block;
 }
 
-.hlink:hover { color: var(--accent); transform: translateY(-2px); }
+.vlink:hover { color: var(--accent); transform: translateY(-2px); }
 
-.hdesc {
+.vdesc {
     position: relative;
     z-index: 1;
     color: var(--muted);
-    font-size: 0.9rem;
-    margin-top: 16px;
-    max-width: 48ch;
+    font-size: 0.95rem;
+    margin-top: 20px;
+    max-width: 62ch;
 }
 
-/* ---- Lusion-style reveals: wipe title, fade content as panels flow in ---- */
-html.js .h3t {
-    display: inline-block;
-    clip-path: inset(-0.3em 102% -0.3em -0.1em);
-    transition: clip-path 0.75s cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-html.js .hpanel.active .h3t {
-    clip-path: inset(-0.3em -0.1em -0.3em -0.1em);
-}
-
-html.js .hpanel .hdesc,
-html.js .hpanel .hpanel-meta,
-html.js .hint-panel .hint-big,
-html.js .hint-panel .hint-small {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.45s ease 0.14s, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.14s;
-}
-
-html.js .hpanel.active .hdesc,
-html.js .hpanel.active .hpanel-meta {
-    opacity: 1;
-    transform: none;
-    transition-delay: 0.22s;
-}
-
-html.js .hint-panel.active .hint-big,
-html.js .hint-panel.active .hint-small {
-    opacity: 1;
-    transform: none;
-}
-
-/* ghost number counter-drift */
-.hnum { transform: translateX(var(--nx, 0px)); }
-
-.hpanel-meta {
+.vmeta {
     position: relative;
     z-index: 1;
-    margin-top: auto;
-    padding-top: 24px;
+    margin-top: 26px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    gap: 12px;
+    gap: 14px;
 }
 
-/* intro panel */
-.hint-panel {
-    border-top: none;
-    justify-content: center;
-    width: clamp(280px, 40vw, 560px);
-    padding-top: 0;
-    overflow: hidden;
+/* alternating indent for editorial rhythm */
+@media (min-width: 900px) {
+    .vpanel:nth-child(even) .vpanel-head,
+    .vpanel:nth-child(even) .vdesc,
+    .vpanel:nth-child(even) .vmeta {
+        margin-left: clamp(40px, 9vw, 150px);
+    }
 }
 
-.hint-panel::before { display: none; }
-
-.hint-big {
-    font-family: "Syne", sans-serif;
-    font-weight: 800;
-    font-size: clamp(2.4rem, 4.4vw, 4rem);
-    line-height: 0.98;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
+/* ---- flow transitions: fold in from below with a slight skew ---- */
+html.js .vpanel {
+    opacity: 0;
+    transform: translateY(72px) skewY(1.4deg);
+    transition: opacity 0.65s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.hint-big em {
-    font-style: normal;
-    color: transparent;
-    -webkit-text-stroke: 2px var(--stroke);
+html.js .vpanel.active {
+    opacity: 1;
+    transform: translateY(0) skewY(0deg);
 }
 
-@supports not (-webkit-text-stroke: 2px black) {
-    .hint-big em { color: var(--muted); }
+/* masked title wipe */
+html.js .h3t {
+    display: inline-block;
+    clip-path: inset(-0.3em 102% -0.3em -0.1em);
+    transition: clip-path 0.75s cubic-bezier(0.76, 0, 0.24, 1) 0.1s;
 }
 
-.hint-small {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.66rem;
-    letter-spacing: 0.2em;
-    color: var(--muted);
-    margin-top: 24px;
-    line-height: 2.1;
+html.js .vpanel.active .h3t {
+    clip-path: inset(-0.3em -0.1em -0.3em -0.1em);
 }
 
-/* footer rail: counter + progress */
-.hfooter {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-    padding: 16px 6vw 6px;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.22em;
-    color: var(--muted);
+/* description + meta follow the title */
+html.js .vpanel .vdesc,
+html.js .vpanel .vmeta {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.45s ease 0.16s, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.16s;
 }
 
-.hcounter { color: var(--text); white-space: nowrap; }
+html.js .vpanel.active .vdesc { opacity: 1; transform: none; }
 
-.hprogress {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-    position: relative;
+html.js .vpanel.active .vmeta {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0.28s;
 }
 
-.hprogress-fill {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 0%;
-    background: var(--grad);
-}
-
-.hhint { white-space: nowrap; }
-
-/* scrub mode (desktop viewport, motion allowed) — set by JS */
-.hscroll.scrub .hsticky {
-    position: sticky;
-    top: 0;
-    /* full-bleed: escape the centered container */
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    height: 100vh;
-    height: 100svh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.hscroll.scrub .htrack {
-    overflow: visible;
-    width: max-content;
-    padding-top: 0;
-    will-change: transform;
-}
-
-/* stagger as CSS var so JS transform composition stays clean */
-.hscroll.scrub .hpanel:nth-child(odd):not(.hint-panel) { --sy: 4vh; }
-.hscroll.scrub .hpanel:nth-child(even) { --sy: -3vh; }
-
-.hscroll.scrub .hfooter {
-    position: absolute;
-    bottom: 4.5vh;
-    left: 0;
-    right: 0;
-    padding: 0 6vw;
-}
-
-/* stagger would clip inside a native scroller */
-.hscroll:not(.scrub) .hprogress { visibility: hidden; }
-
-.tag-row { display: flex; flex-wrap: wrap; gap: 7px; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .tag {
     font-family: "JetBrains Mono", monospace;

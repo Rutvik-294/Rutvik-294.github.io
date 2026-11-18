@@ -56,7 +56,7 @@
             requestAnimationFrame(ringLoop);
         })();
 
-        const growSel = "a, button, .chip, .hpanel";
+        const growSel = "a, button, .chip, .vpanel";
         document.addEventListener("mouseover", (e) => {
             if (e.target.closest(growSel)) ring.classList.add("grow");
         });
@@ -211,7 +211,7 @@
     });
 
     /* wrap panel titles for the wipe reveal */
-    document.querySelectorAll(".hpanel-head h3").forEach((h3) => {
+    document.querySelectorAll(".vpanel-head h3").forEach((h3) => {
         const span = document.createElement("span");
         span.className = "h3t";
         while (h3.firstChild) span.appendChild(h3.firstChild);
@@ -282,120 +282,75 @@
         }, { passive: true });
     });
 
-    /* ---------- projects: pinned horizontal wall ---------- */
-    const hscroll = document.getElementById("hscroll");
-    const htrack = document.getElementById("htrack");
-    const hfill = document.getElementById("hprogress-fill");
-    const hcur = document.getElementById("hcurrent");
-    const htotal = document.getElementById("htotal");
+    /* ---------- projects: vertical editorial flow ---------- */
+    const vwall = document.getElementById("vwall");
+    let vMeasure = null;
 
-    let galleryLayout = null;
+    if (vwall) {
+        const mainEl = document.querySelector("main");
+        let panels = [], inView = false, rafId = null, lastY = scrollY, sk = 0;
 
-    if (hscroll && htrack) {
-        let scrub = false, maxScroll = 0, secTop = 0, target = 0, cur = -1;
-        let rafId = null, sectionVisible = false, projectCount = 0;
-        let wallPanels = [], lastY = 0, vel = 0, lastApplied = -1;
-
-        const canScrub = () => innerWidth > 900 && !reducedMotion;
-
-        function setTransform(x, sk) {
-            htrack.style.transform = sk
-                ? `translate3d(${-x}px, 0, 0) skewY(${sk}deg)`
-                : `translate3d(${-x}px, 0, 0)`;
+        function measure() {
+            panels = Array.from(vwall.querySelectorAll(".vpanel")).map((el) => {
+                const r = el.getBoundingClientRect();
+                return { el, top: r.top + scrollY, h: r.height };
+            });
         }
 
-        function apply(x) {
-            const p = maxScroll ? x / maxScroll : 0;
-            hfill.style.width = (p * 100) + "%";
-            const idx = Math.max(0, Math.min(Math.round(p * projectCount), projectCount));
-            hcur.textContent = String(idx).padStart(2, "0");
-
-            // entrance flow: panels settle as they approach center
-            const half = innerWidth * 0.55;
-            for (const wp of wallPanels) {
-                if (wp.el.classList.contains("hidden")) continue;
-                const d = wp.x + wp.w / 2 - x - innerWidth / 2;
-                const t = Math.max(0, 1 - Math.abs(d) / half);
-                wp.el.style.setProperty("--sx", ((1 - t) * 90).toFixed(1) + "px");
-                wp.el.style.setProperty("--sk", ((1 - t) * 3).toFixed(2) + "deg");
-                wp.el.style.setProperty("--op", (0.3 + 0.7 * t).toFixed(3));
-                wp.el.style.setProperty("--nx", ((1 - t) * -40).toFixed(1) + "px");
-                wp.el.classList.toggle("active", t > 0.45);
-            }
-        }
-
-        function layout() {
-            scrub = canScrub();
-            hscroll.classList.toggle("scrub", scrub);
-            wallPanels = Array.from(htrack.querySelectorAll(".hpanel")).map((el) => ({
-                el, x: el.offsetLeft, w: el.offsetWidth
-            }));
-            if (!scrub) {
-                hscroll.style.height = "";
-                htrack.style.transform = "";
-                cur = -1;
-                wallPanels.forEach((wp) => {
-                    ["--sx", "--sk", "--op", "--nx"].forEach((v) => wp.el.style.removeProperty(v));
-                    wp.el.classList.add("active");
-                });
-                return;
-            }
-            projectCount = htrack.querySelectorAll(".hpanel[data-cat]:not(.hidden)").length;
-            if (htotal) htotal.textContent = String(projectCount).padStart(2, "0");
-            const trackW = htrack.scrollWidth;
-            maxScroll = Math.max(0, trackW - innerWidth);
-            secTop = hscroll.getBoundingClientRect().top + scrollY;
-            hscroll.style.height = Math.round(maxScroll * 0.9 + innerHeight) + "px";
-        }
-
-        function onScroll() {
-            if (!scrub) return;
-            const total = hscroll.offsetHeight - innerHeight;
-            const p = Math.min(Math.max((scrollY - secTop) / total, 0), 1);
-            target = p * maxScroll;
-            if (!sectionVisible) { cur = target; setTransform(cur); apply(cur); }
-        }
-
-        function loop() {
-            // velocity skew — the scroll-distortion feel from the reference
+        function frame() {
             const y = scrollY;
-            vel = lerp(vel, y - lastY, 0.12);
+
+            // velocity skew — the scroll-distortion feel from the reference
+            const v = y - lastY;
             lastY = y;
-            const sk = Math.max(-2.2, Math.min(2.2, vel * 0.05));
-            cur = lerp(cur, target, 0.12);
-            if (Math.abs(cur - lastApplied) > 0.1 || Math.abs(sk) > 0.01 || lastApplied < 0) {
-                lastApplied = cur;
-                setTransform(cur, Math.abs(sk) > 0.005 ? sk : 0);
-                apply(cur);
+            sk = lerp(sk, Math.max(-1.8, Math.min(1.8, v * 0.035)), 0.1);
+            mainEl.style.transform = Math.abs(sk) > 0.008 ? `skewY(${sk.toFixed(3)}deg)` : "none";
+
+            // ghost-number parallax + reveal folds
+            const vc = y + innerHeight / 2;
+            for (const p of panels) {
+                if (p.el.classList.contains("hidden")) continue;
+                const off = p.top + p.h / 2 - vc;
+                p.el.style.setProperty("--ny", Math.max(-14, Math.min(42, off * -0.055)).toFixed(1) + "px");
+                const rTop = p.top - y;
+                const active = rTop < innerHeight * 0.92 && rTop + p.h > innerHeight * 0.16;
+                p.el.classList.toggle("active", active);
             }
-            rafId = requestAnimationFrame(loop);
+            rafId = requestAnimationFrame(frame);
         }
 
-        const start = () => { if (scrub && !rafId) { sectionVisible = true; lastY = scrollY; rafId = requestAnimationFrame(loop); } };
-        const stop = () => { sectionVisible = false; if (rafId) { cancelAnimationFrame(rafId); rafId = null; } };
+        const start = () => {
+            if (!rafId && !reducedMotion) { lastY = scrollY; rafId = requestAnimationFrame(frame); }
+        };
+        const stop = () => {
+            if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+            mainEl.style.transform = "none";
+            sk = 0;
+        };
 
         new IntersectionObserver((en) => en[0].isIntersecting ? start() : stop(),
-            { rootMargin: "200px" }).observe(hscroll);
+            { rootMargin: "150px" }).observe(vwall);
+        document.addEventListener("visibilitychange", () => document.hidden ? stop() : start());
+        addEventListener("resize", measure);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
 
-        addEventListener("scroll", onScroll, { passive: true });
-        addEventListener("resize", layout);
-        if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
-
-        layout(); onScroll();
-        galleryLayout = layout;
+        measure();
+        if (reducedMotion) panels.forEach((p) => p.el.classList.add("active"));
+        else start();
+        vMeasure = measure;
     }
 
     /* ---------- filters ---------- */
     const chips = document.querySelectorAll("#filters .chip");
-    const panels = document.querySelectorAll("#htrack .hpanel[data-cat]");
+    const panels = document.querySelectorAll("#vwall .vpanel[data-cat]");
     chips.forEach((chip) => {
         chip.addEventListener("click", () => {
             chips.forEach((c) => c.classList.remove("active"));
             chip.classList.add("active");
             const f = chip.dataset.filter;
             panels.forEach((panel) => panel.classList.toggle("hidden", f !== "all" && panel.dataset.cat !== f));
-            if (galleryLayout) {
-                galleryLayout();
+            if (vMeasure) {
+                vMeasure();
                 dispatchEvent(new Event("scroll"));
             }
         });
