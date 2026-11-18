@@ -706,7 +706,7 @@ section { margin-bottom: 110px; }
 .htrack {
     display: flex;
     gap: clamp(30px, 4vw, 72px);
-    padding: 26px 0 10px 6vw;
+    padding: 60px 0 10px 6vw;
     overflow-x: auto;
     scroll-snap-type: x proximity;
     scrollbar-width: none;
@@ -727,6 +727,8 @@ section { margin-bottom: 110px; }
     padding: 30px 0 8px;
     display: flex;
     flex-direction: column;
+    /* occlude any neighbor overflow — keeps the wall clean */
+    background: var(--bg);
 }
 
 /* gradient sweep on the top rule */
@@ -802,10 +804,34 @@ section { margin-bottom: 110px; }
 .hpanel-head h3 {
     font-family: "Syne", sans-serif;
     font-weight: 800;
-    font-size: clamp(1.45rem, 2.4vw, 1.95rem);
-    line-height: 1.08;
-    letter-spacing: -0.01em;
+    font-size: clamp(2rem, 3.4vw, 3.2rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
     text-transform: uppercase;
+    /* Lusion move: title crosses the top rule */
+    margin-top: -0.45em;
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.hpanel:hover .hpanel-head h3 { color: var(--accent); }
+
+/* arrow slides in from the left margin on hover */
+.hpanel-head h3::before {
+    content: "→";
+    position: absolute;
+    left: -1.1em;
+    top: 0;
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    color: var(--accent);
+}
+
+.hpanel:hover .hpanel-head h3::before {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .hlink {
@@ -844,6 +870,7 @@ section { margin-bottom: 110px; }
     justify-content: center;
     width: clamp(280px, 40vw, 560px);
     padding-top: 0;
+    overflow: hidden;
 }
 
 .hint-panel::before { display: none; }
@@ -851,8 +878,8 @@ section { margin-bottom: 110px; }
 .hint-big {
     font-family: "Syne", sans-serif;
     font-weight: 800;
-    font-size: clamp(3.2rem, 6.5vw, 5.6rem);
-    line-height: 0.95;
+    font-size: clamp(2.4rem, 4.4vw, 4rem);
+    line-height: 0.98;
     text-transform: uppercase;
     letter-spacing: -0.01em;
 }
