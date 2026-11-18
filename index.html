@@ -147,7 +147,7 @@
             </div>
         </section>
 
-        <!-- 02 PROJECTS -->
+        <!-- 02 PROJECTS — horizontal wall -->
         <section id="projects">
             <div class="sec-head reveal">
                 <span class="sec-index">[ 02 ]</span>
@@ -163,202 +163,209 @@
                 <button class="chip" data-filter="course" data-magnetic>Coursework</button>
             </div>
 
-            <div class="projects-grid" id="projects-grid">
+            <div class="hscroll" id="hscroll">
+                <div class="hsticky" id="hsticky">
+                    <div class="htrack" id="htrack">
 
-                <!-- SATviz -->
-                <article class="project-card spot" data-cat="systems">
-                    <span class="badge-new">NEW</span>
-                    <div class="project-top">
-                        <h3>SATviz</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/Rutvik-294/SATviz" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                        <div class="hpanel hint-panel">
+                            <p class="hint-big">SELECTED<br><em>WORK</em></p>
+                            <p class="hint-small">13 PROJECTS — 2025 → 2026<br>( KEEP SCROLLING — THE WALL MOVES SIDEWAYS )</p>
                         </div>
-                    </div>
-                    <p class="project-desc">Two dependency-free SAT solvers — CDCL &amp; DPLL — packaged as a runnable JAR, plus a Swing visualizer that animates how each one thinks: implication graphs, clause learning, conflicts pulsing rose, and backjumps sweeping in real time.</p>
-                    <div class="project-meta">
-                        <div class="tag-row"><span class="tag">Java</span><span class="tag">CDCL</span><span class="tag">DPLL</span><span class="tag">Swing</span></div>
-                        <span class="proj-date">NOV 2026</span>
-                    </div>
-                </article>
 
-                <!-- pysat -->
-                <article class="project-card spot" data-cat="systems">
-                    <span class="badge-new">NEW</span>
-                    <div class="project-top">
-                        <h3>pysat</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/Rutvik-294/pysat" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <p class="project-desc">A conflict-driven clause-learning SAT solver implementing the MiniSat architecture in ~600 lines of dependency-free Python, with an interactive terminal visualizer animating CDCL and DPLL search step by step.</p>
-                    <div class="project-meta">
-                        <div class="tag-row"><span class="tag">Python</span><span class="tag">CDCL</span><span class="tag">Algorithms</span></div>
-                        <span class="proj-date">NOV 2026</span>
-                    </div>
-                </article>
+                        <!-- 01 SATviz -->
+                        <article class="hpanel spot" data-cat="systems">
+                            <span class="badge-new">NEW</span>
+                            <span class="hnum">01</span>
+                            <div class="hpanel-head">
+                                <h3>SATviz</h3>
+                                <a class="hlink" href="https://github.com/Rutvik-294/SATviz" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                            </div>
+                            <p class="hdesc">Two dependency-free SAT solvers — CDCL &amp; DPLL — packaged as a runnable JAR, plus a Swing visualizer that animates how each one thinks: implication graphs, clause learning, conflicts pulsing rose, and backjumps sweeping in real time.</p>
+                            <div class="hpanel-meta">
+                                <div class="tag-row"><span class="tag">Java</span><span class="tag">CDCL</span><span class="tag">DPLL</span><span class="tag">Swing</span></div>
+                                <span class="proj-date">NOV 2026</span>
+                            </div>
+                        </article>
 
-                <!-- NPOPS -->
-                <article class="project-card spot" data-cat="systems">
-                    <span class="badge-new">NEW</span>
-                    <div class="project-top">
-                        <h3>NPOPS</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/Rutvik-294/NPOPS" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <p class="project-desc">North Pole Operations Platform — an enterprise logistics &amp; manufacturing SaaS for Santa's Workshop: vehicle-route optimization for the global delivery run, MRP production scheduling, inventory control, and live sleigh tracking. All in one zero-dependency Python package.</p>
-                    <div class="project-meta">
-                        <div class="tag-row"><span class="tag">Python</span><span class="tag">Optimization</span><span class="tag">SaaS</span></div>
-                        <span class="proj-date">NOV 2026</span>
-                    </div>
-                </article>
+                        <!-- 02 pysat -->
+                        <article class="hpanel spot" data-cat="systems">
+                            <span class="badge-new">NEW</span>
+                            <span class="hnum">02</span>
+                            <div class="hpanel-head">
+                                <h3>pysat</h3>
+                                <a class="hlink" href="https://github.com/Rutvik-294/pysat" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                            </div>
+                            <p class="hdesc">A conflict-driven clause-learning SAT solver implementing the MiniSat architecture in ~600 lines of dependency-free Python, with an interactive terminal visualizer animating CDCL and DPLL search step by step.</p>
+                            <div class="hpanel-meta">
+                                <div class="tag-row"><span class="tag">Python</span><span class="tag">CDCL</span><span class="tag">Algorithms</span></div>
+                                <span class="proj-date">NOV 2026</span>
+                            </div>
+                        </article>
 
-                <!-- CSEA Meme Arena -->
-                <article class="project-card spot" data-cat="web">
-                    <span class="badge-new">NEW</span>
-                    <div class="project-top">
-                        <h3>CSEA Meme Arena</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/Rutvik-294/CSEA" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <p class="project-desc">Meme-sharing and voting platform for the CSE department at IIT Bombay — head-to-head Elo-rated meme battles, leaderboards, presigned S3 uploads, and admin moderation with LDAP auth.</p>
-                    <div class="project-meta">
-                        <div class="tag-row"><span class="tag">Next.js 14</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">LDAP</span></div>
-                        <span class="proj-date">NOV 2026</span>
-                    </div>
-                </article>
+                        <!-- 03 NPOPS -->
+                        <article class="hpanel spot" data-cat="systems">
+                            <span class="badge-new">NEW</span>
+                            <span class="hnum">03</span>
+                            <div class="hpanel-head">
+                                <h3>NPOPS</h3>
+                                <a class="hlink" href="https://github.com/Rutvik-294/NPOPS" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                            </div>
+                            <p class="hdesc">North Pole Operations Platform — an enterprise logistics &amp; manufacturing SaaS for Santa's Workshop: vehicle-route optimization for the global delivery run, MRP production scheduling, inventory control, and live sleigh tracking. All in one zero-dependency Python package.</p>
+                            <div class="hpanel-meta">
+                                <div class="tag-row"><span class="tag">Python</span><span class="tag">Optimization</span><span class="tag">SaaS</span></div>
+                                <span class="proj-date">NOV 2026</span>
+                            </div>
+                        </article>
 
-                <!-- duochat -->
-                <article class="project-card spot" data-cat="web">
-                    <span class="badge-new">NEW</span>
-                    <div class="project-top">
-                        <h3>Glass Messenger (duochat)</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/Rutvik-294/duochat" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <p class="project-desc">Real-time chat application built and iterated end-to-end — from backend logic to a polished glass-morphic frontend, heading toward full-scale deployment.</p>
-                    <div class="project-meta">
-                        <div class="tag-row"><span class="tag">JavaScript</span><span class="tag">HTML/CSS</span><span class="tag">Real-time</span></div>
-                        <span class="proj-date">FALL 2026</span>
-                    </div>
-                </article>
+                        <!-- 04 CSEA Meme Arena -->
+                        <article class="hpanel spot" data-cat="web">
+                            <span class="badge-new">NEW</span>
+                            <span class="hnum">04</span>
+                            <div class="hpanel-head">
+                                <h3>CSEA Meme Arena</h3>
+                                <a class="hlink" href="https://github.com/Rutvik-294/CSEA" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                            </div>
+                            <p class="hdesc">Meme-sharing and voting platform for the CSE department at IIT Bombay — head-to-head Elo-rated meme battles, leaderboards, presigned S3 uploads, and admin moderation with LDAP auth.</p>
+                            <div class="hpanel-meta">
+                                <div class="tag-row"><span class="tag">Next.js 14</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">LDAP</span></div>
+                                <span class="proj-date">NOV 2026</span>
+                            </div>
+                        </article>
 
-                <!-- Catan agent -->
-                <article class="project-card spot" data-cat="aiml">
-                    <span class="badge-new">NEW</span>
-                    <div class="project-top">
-                        <h3>Catan AI Agent</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/Rutvik-294/catan-agent" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <p class="project-desc">PIMC agent built on the catanatron engine for a Catan hackathon — samples K complete hidden-information worlds per decision, scores actions by mean value-function payoff, and time-budgets every move inside a strict ~12.5 ms clock.</p>
-                    <div class="project-meta">
-                        <div class="tag-row"><span class="tag">Python</span><span class="tag">Game AI</span><span class="tag">Search</span></div>
-                        <span class="proj-date">OCT 2026</span>
-                    </div>
-                </article>
+                        <!-- 05 duochat -->
+                        <article class="hpanel spot" data-cat="web">
+                            <span class="badge-new">NEW</span>
+                            <span class="hnum">05</span>
+                            <div class="hpanel-head">
+                                <h3>Glass Messenger (duochat)</h3>
+                                <a class="hlink" href="https://github.com/Rutvik-294/duochat" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                            </div>
+                            <p class="hdesc">Real-time chat application built and iterated end-to-end — from backend logic to a polished glass-morphic frontend, heading toward full-scale deployment.</p>
+                            <div class="hpanel-meta">
+                                <div class="tag-row"><span class="tag">JavaScript</span><span class="tag">HTML/CSS</span><span class="tag">Real-time</span></div>
+                                <span class="proj-date">FALL 2026</span>
+                            </div>
+                        </article>
 
-                <!-- Game Theory -->
-                <article class="project-card spot" data-cat="course">
-                    <span class="badge-new">NEW</span>
-                    <div class="project-top">
-                        <h3>Game Theory</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/Rutvik-294/LearnerSpace2K26" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <p class="project-desc">Learner's Space course covering strategies, the Prisoner's Dilemma, payoff analysis, and finding optimal strategies — including Nash equilibria (pure-strategy) and strictly/weakly dominated strategies.</p>
-                    <div class="project-meta">
-                        <div class="tag-row"><span class="tag">Learner's Space</span><span class="tag">Game Theory</span></div>
-                        <span class="proj-date">2026</span>
-                    </div>
-                </article>
+                        <!-- 06 Catan agent -->
+                        <article class="hpanel spot" data-cat="aiml">
+                            <span class="badge-new">NEW</span>
+                            <span class="hnum">06</span>
+                            <div class="hpanel-head">
+                                <h3>Catan AI Agent</h3>
+                                <a class="hlink" href="https://github.com/Rutvik-294/catan-agent" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                            </div>
+                            <p class="hdesc">PIMC agent built on the catanatron engine for a Catan hackathon — samples K complete hidden-information worlds per decision, scores actions by mean value-function payoff, and time-budgets every move inside a strict ~12.5 ms clock.</p>
+                            <div class="hpanel-meta">
+                                <div class="tag-row"><span class="tag">Python</span><span class="tag">Game AI</span><span class="tag">Search</span></div>
+                                <span class="proj-date">OCT 2026</span>
+                            </div>
+                        </article>
 
-                <!-- SOC LLM -->
-                <article class="project-card spot" data-cat="aiml">
-                    <div class="project-top">
-                        <h3>Tokens to Translations (LLM)</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/Rutvik-294/SOC_Tokens_to_Translations" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <p class="project-desc">Built an English→Spanish translation model on an internet-sourced parallel dataset using RNNs, LSTMs, and attention. Implemented tokenization from a bigram model up — following Karpathy's lectures — and manual backprop by hand for a ground-up understanding of training.</p>
-                    <div class="project-meta">
-                        <div class="tag-row"><span class="tag">Seasons of Code</span><span class="tag">LLM</span></div>
-                        <span class="proj-date">SUMMER 2026</span>
-                    </div>
-                </article>
+                        <!-- 07 Game Theory -->
+                        <article class="hpanel spot" data-cat="course">
+                            <span class="badge-new">NEW</span>
+                            <span class="hnum">07</span>
+                            <div class="hpanel-head">
+                                <h3>Game Theory</h3>
+                                <a class="hlink" href="https://github.com/Rutvik-294/LearnerSpace2K26" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                            </div>
+                            <p class="hdesc">Learner's Space course covering strategies, the Prisoner's Dilemma, payoff analysis, and finding optimal strategies — including Nash equilibria (pure-strategy) and strictly/weakly dominated strategies.</p>
+                            <div class="hpanel-meta">
+                                <div class="tag-row"><span class="tag">Learner's Space</span><span class="tag">Game Theory</span></div>
+                                <span class="proj-date">2026</span>
+                            </div>
+                        </article>
 
-                <!-- RL -->
-                <article class="project-card spot" data-cat="aiml">
-                    <div class="project-top">
-                        <h3>Reinforcement Learning</h3>
-                        <div class="project-links"></div>
-                    </div>
-                    <p class="project-desc">Authored a comprehensive report covering RL from first principles: multi-armed bandits (ε-greedy, UCB), MDPs and Bellman equations, dynamic programming, TD learning, SARSA, and Q-learning — through DQN, REINFORCE, A2C, and PPO.</p>
-                    <div class="project-meta">
-                        <div class="tag-row"><span class="tag">Seasons of Science</span><span class="tag">RL</span></div>
-                        <span class="proj-date">SUMMER 2026</span>
-                    </div>
-                </article>
+                        <!-- 08 SOC LLM -->
+                        <article class="hpanel spot" data-cat="aiml">
+                            <span class="hnum">08</span>
+                            <div class="hpanel-head">
+                                <h3>Tokens to Translations (LLM)</h3>
+                                <a class="hlink" href="https://github.com/Rutvik-294/SOC_Tokens_to_Translations" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                            </div>
+                            <p class="hdesc">Built an English→Spanish translation model on an internet-sourced parallel dataset using RNNs, LSTMs, and attention. Implemented tokenization from a bigram model up — following Karpathy's lectures — and manual backprop by hand for a ground-up understanding of training.</p>
+                            <div class="hpanel-meta">
+                                <div class="tag-row"><span class="tag">Seasons of Code</span><span class="tag">LLM</span></div>
+                                <span class="proj-date">SUMMER 2026</span>
+                            </div>
+                        </article>
 
-                <!-- Snake Stack -->
-                <article class="project-card spot" data-cat="web">
-                    <div class="project-top">
-                        <h3>Full-Stack Snake Game</h3>
-                        <div class="project-links">
-                            <a href="https://github.com/Rutvik-294/Snake_Stack" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <p class="project-desc">Developed a multi-layered game using a three-tier architecture (Client-Server-Database) with real-time gameplay.</p>
-                    <div class="project-meta">
-                        <div class="tag-row"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">JavaScript</span></div>
-                        <span class="proj-date">2026</span>
-                    </div>
-                </article>
+                        <!-- 09 RL -->
+                        <article class="hpanel spot" data-cat="aiml">
+                            <span class="hnum">09</span>
+                            <div class="hpanel-head">
+                                <h3>Reinforcement Learning</h3>
+                            </div>
+                            <p class="hdesc">Authored a comprehensive report covering RL from first principles: multi-armed bandits (ε-greedy, UCB), MDPs and Bellman equations, dynamic programming, TD learning, SARSA, and Q-learning — through DQN, REINFORCE, A2C, and PPO.</p>
+                            <div class="hpanel-meta">
+                                <div class="tag-row"><span class="tag">Seasons of Science</span><span class="tag">RL</span></div>
+                                <span class="proj-date">SUMMER 2026</span>
+                            </div>
+                        </article>
 
-                <!-- Snitch -->
-                <article class="project-card spot" data-cat="course">
-                    <div class="project-top">
-                        <h3>Business Case Study: Snitch</h3>
-                        <div class="project-links"></div>
-                    </div>
-                    <p class="project-desc">Analyzed D2C market penetration. Developed a professional Pitch Deck and video synthesizing financial growth strategies.</p>
-                    <div class="project-meta">
-                        <div class="tag-row"><span class="tag">ENT Course</span></div>
-                        <span class="proj-date">2025</span>
-                    </div>
-                </article>
+                        <!-- 10 Snake Stack -->
+                        <article class="hpanel spot" data-cat="web">
+                            <span class="hnum">10</span>
+                            <div class="hpanel-head">
+                                <h3>Full-Stack Snake Game</h3>
+                                <a class="hlink" href="https://github.com/Rutvik-294/Snake_Stack" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                            </div>
+                            <p class="hdesc">Developed a multi-layered game using a three-tier architecture (Client-Server-Database) with real-time gameplay.</p>
+                            <div class="hpanel-meta">
+                                <div class="tag-row"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">JavaScript</span></div>
+                                <span class="proj-date">2026</span>
+                            </div>
+                        </article>
 
-                <!-- XLR8 -->
-                <article class="project-card spot" data-cat="hardware">
-                    <div class="project-top">
-                        <h3>Autonomous Robot (XLR8)</h3>
-                        <div class="project-links"></div>
-                    </div>
-                    <p class="project-desc">Built a controlled robot with IR sensors for obstacle detection. Developed embedded code for competitive navigation.</p>
-                    <div class="project-meta">
-                        <div class="tag-row"><span class="tag">Arduino</span><span class="tag">Raspberry Pi</span></div>
-                        <span class="proj-date">2025</span>
-                    </div>
-                </article>
+                        <!-- 11 Snitch -->
+                        <article class="hpanel spot" data-cat="course">
+                            <span class="hnum">11</span>
+                            <div class="hpanel-head">
+                                <h3>Business Case Study: Snitch</h3>
+                            </div>
+                            <p class="hdesc">Analyzed D2C market penetration. Developed a professional Pitch Deck and video synthesizing financial growth strategies.</p>
+                            <div class="hpanel-meta">
+                                <div class="tag-row"><span class="tag">ENT Course</span></div>
+                                <span class="proj-date">2025</span>
+                            </div>
+                        </article>
 
-                <!-- MS101 -->
-                <article class="project-card spot" data-cat="hardware">
-                    <div class="project-top">
-                        <h3>Load-Dumping Robot (MS101)</h3>
-                        <div class="project-links"></div>
-                    </div>
-                    <p class="project-desc">Designed the chassis and dumping mechanism in Autodesk Fusion 360, fabricated via laser cutting and 3D printing, and built a custom wireless controller — carrying a threshold payload up a 30° incline.</p>
-                    <div class="project-meta">
-                        <div class="tag-row"><span class="tag">Robotics</span></div>
-                        <span class="proj-date">2025</span>
-                    </div>
-                </article>
+                        <!-- 12 XLR8 -->
+                        <article class="hpanel spot" data-cat="hardware">
+                            <span class="hnum">12</span>
+                            <div class="hpanel-head">
+                                <h3>Autonomous Robot (XLR8)</h3>
+                            </div>
+                            <p class="hdesc">Built a controlled robot with IR sensors for obstacle detection. Developed embedded code for competitive navigation.</p>
+                            <div class="hpanel-meta">
+                                <div class="tag-row"><span class="tag">Arduino</span><span class="tag">Raspberry Pi</span></div>
+                                <span class="proj-date">2025</span>
+                            </div>
+                        </article>
 
+                        <!-- 13 MS101 -->
+                        <article class="hpanel spot" data-cat="hardware">
+                            <span class="hnum">13</span>
+                            <div class="hpanel-head">
+                                <h3>Load-Dumping Robot (MS101)</h3>
+                            </div>
+                            <p class="hdesc">Designed the chassis and dumping mechanism in Autodesk Fusion 360, fabricated via laser cutting and 3D printing, and built a custom wireless controller — carrying a threshold payload up a 30° incline.</p>
+                            <div class="hpanel-meta">
+                                <div class="tag-row"><span class="tag">Robotics</span></div>
+                                <span class="proj-date">2025</span>
+                            </div>
+                        </article>
+
+                        <div class="hspacer" aria-hidden="true"></div>
+                    </div>
+
+                    <div class="hfooter">
+                        <span class="hcounter"><span id="hcurrent">00</span> / <span id="htotal">13</span></span>
+                        <div class="hprogress"><div class="hprogress-fill" id="hprogress-fill"></div></div>
+                        <span class="hhint">SCROLL ↓</span>
+                    </div>
+                </div>
             </div>
         </section>
 

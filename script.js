@@ -56,7 +56,7 @@
             requestAnimationFrame(ringLoop);
         })();
 
-        const growSel = "a, button, .chip, .project-card";
+        const growSel = "a, button, .chip, .hpanel";
         document.addEventListener("mouseover", (e) => {
             if (e.target.closest(growSel)) ring.classList.add("grow");
         });
@@ -265,24 +265,97 @@
         });
     }
 
-    /* ---------- tilt + spotlight ---------- */
+    /* ---------- spotlight (cursor-tracked glow) ---------- */
     document.querySelectorAll(".spot").forEach((el) => {
         el.addEventListener("mousemove", (e) => {
             const r = el.getBoundingClientRect();
-            const x = e.clientX - r.left, y = e.clientY - r.top;
-            el.style.setProperty("--mx", x + "px");
-            el.style.setProperty("--my", y + "px");
-            if (interactive && el.classList.contains("project-card")) {
-                const rx = ((y / r.height) - 0.5) * -5;
-                const ry = ((x / r.width) - 0.5) * 5;
-                el.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-            }
+            el.style.setProperty("--mx", (e.clientX - r.left) + "px");
+            el.style.setProperty("--my", (e.clientY - r.top) + "px");
         }, { passive: true });
-        el.addEventListener("mouseleave", () => {
-            if (el.classList.contains("project-card")) {
-                el.style.transition = "transform .5s cubic-bezier(.22,1,.36,1), border-color .3s ease, box-shadow .3s ease";
-                el.style.transform = "";
-                setTimeout(() => { el.style.transition = ""; }, 500);
+    });
+
+    /* ---------- projects: pinned horizontal wall ---------- */
+    const hscroll = document.getElementById("hscroll");
+    const htrack = document.getElementById("htrack");
+    const hfill = document.getElementById("hprogress-fill");
+    const hcur = document.getElementById("hcurrent");
+    const htotal = document.getElementById("htotal");
+
+    let galleryLayout = null;
+
+    if (hscroll && htrack) {
+        let scrub = false, maxScroll = 0, secTop = 0, target = 0, cur = -1;
+        let rafId = null, sectionVisible = false, projectCount = 0;
+
+        const canScrub = () => innerWidth > 900 && finePointer && !reducedMotion;
+
+        function apply(x) {
+            htrack.style.transform = `translate3d(${-x}px, 0, 0)`;
+            const p = maxScroll ? x / maxScroll : 0;
+            hfill.style.width = (p * 100) + "%";
+            const idx = Math.min(Math.floor(p * projectCount), projectCount);
+            hcur.textContent = String(idx).padStart(2, "0");
+        }
+
+        function layout() {
+            scrub = canScrub();
+            hscroll.classList.toggle("scrub", scrub);
+            if (!scrub) {
+                hscroll.style.height = "";
+                htrack.style.transform = "";
+                cur = -1;
+                return;
+            }
+            projectCount = htrack.querySelectorAll(".hpanel[data-cat]:not(.hidden)").length;
+            if (htotal) htotal.textContent = String(projectCount).padStart(2, "0");
+            const trackW = htrack.scrollWidth;
+            maxScroll = Math.max(0, trackW - innerWidth);
+            secTop = hscroll.getBoundingClientRect().top + scrollY;
+            hscroll.style.height = Math.round(maxScroll * 0.9 + innerHeight) + "px";
+        }
+
+        function onScroll() {
+            if (!scrub) return;
+            const total = hscroll.offsetHeight - innerHeight;
+            const p = Math.min(Math.max((scrollY - secTop) / total, 0), 1);
+            target = p * maxScroll;
+            if (!sectionVisible) { cur = target; apply(cur); }
+        }
+
+        function loop() {
+            if (Math.abs(target - cur) > 0.5) {
+                cur = lerp(cur, target, 0.12);
+                apply(cur);
+            }
+            rafId = requestAnimationFrame(loop);
+        }
+
+        const start = () => { if (scrub && !rafId) { sectionVisible = true; rafId = requestAnimationFrame(loop); } };
+        const stop = () => { sectionVisible = false; if (rafId) { cancelAnimationFrame(rafId); rafId = null; } };
+
+        new IntersectionObserver((en) => en[0].isIntersecting ? start() : stop(),
+            { rootMargin: "200px" }).observe(hscroll);
+
+        addEventListener("scroll", onScroll, { passive: true });
+        addEventListener("resize", layout);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+
+        layout(); onScroll();
+        galleryLayout = layout;
+    }
+
+    /* ---------- filters ---------- */
+    const chips = document.querySelectorAll("#filters .chip");
+    const panels = document.querySelectorAll("#htrack .hpanel[data-cat]");
+    chips.forEach((chip) => {
+        chip.addEventListener("click", () => {
+            chips.forEach((c) => c.classList.remove("active"));
+            chip.classList.add("active");
+            const f = chip.dataset.filter;
+            panels.forEach((panel) => panel.classList.toggle("hidden", f !== "all" && panel.dataset.cat !== f));
+            if (galleryLayout) {
+                galleryLayout();
+                dispatchEvent(new Event("scroll"));
             }
         });
     });
@@ -304,18 +377,6 @@
         clocks.forEach((c) => { c.textContent = c.dataset.clock === "short" ? now.short : now.long; });
     }
     if (clocks.length) { tickClock(); setInterval(tickClock, 1000); }
-
-    /* ---------- filters ---------- */
-    const chips = document.querySelectorAll("#filters .chip");
-    const cards = document.querySelectorAll("#projects-grid .project-card");
-    chips.forEach((chip) => {
-        chip.addEventListener("click", () => {
-            chips.forEach((c) => c.classList.remove("active"));
-            chip.classList.add("active");
-            const f = chip.dataset.filter;
-            cards.forEach((card) => card.classList.toggle("hidden", f !== "all" && card.dataset.cat !== f));
-        });
-    });
 
     /* ---------- footer year ---------- */
     const yearEl = document.getElementById("year");
