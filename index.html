@@ -2,43 +2,56 @@
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Rutvik Sai | CSE @ IIT Bombay</title>
     <meta name="description" content="Rutvik Sai — B.Tech CSE @ IIT Bombay. Builder, problem solver, quant enthusiast.">
     <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#08090c">
+    <meta property="og:title" content="Rutvik Sai | CSE @ IIT Bombay">
+    <meta property="og:description" content="Builder, problem solver, quant enthusiast. B.Tech CSE @ IIT Bombay.">
+    <meta property="og:type" content="website">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2367e8f9'/%3E%3Cstop offset='1' stop-color='%23a78bfa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%2308090c'/%3E%3Ctext x='32' y='44' font-family='monospace' font-size='34' font-weight='bold' fill='url(%23g)' text-anchor='middle'%3ERS%3C/text%3E%3C/svg%3E">
     <!-- Fonts: Syne (display) + Inter (body) + JetBrains Mono (labels) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <script>document.documentElement.classList.add('js');document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
+    <script>
+        document.documentElement.classList.add('js');
+        var __t = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', __t);
+        var __m = document.querySelector('meta[name="theme-color"]');
+        if (__m) __m.setAttribute('content', __t === 'dark' ? '#08090c' : '#eef1f7');
+    </script>
 </head>
 <body class="loading">
 
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <!-- Preloader -->
-    <div class="loader" id="loader">
+    <div class="loader" id="loader" aria-hidden="true">
         <div class="loader-name">RUTVIK&nbsp;SAI</div>
         <div class="loader-meta">PORTFOLIO ©2026</div>
         <div class="loader-count" id="loader-count">000</div>
     </div>
 
     <!-- Custom cursor / grain / progress -->
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div class="cursor-ring" id="cursor-ring"></div>
+    <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
     <div class="grain" aria-hidden="true"></div>
-    <div class="progress-bar" id="progress-bar"></div>
+    <div class="progress-bar" id="progress-bar" aria-hidden="true"></div>
 
     <!-- NAV -->
     <nav class="nav">
         <a href="#top" class="logo" data-magnetic>RS<span class="accent">©</span>294</a>
         <div class="nav-links">
-            <a href="#education"><sup>01</sup> Education</a>
-            <a href="#projects"><sup>02</sup> Projects</a>
-            <a href="#skills"><sup>03</sup> Skills</a>
-            <a href="#contact"><sup>04</sup> Contact</a>
+            <a href="#education"><sup aria-hidden="true">01</sup> Education</a>
+            <a href="#projects"><sup aria-hidden="true">02</sup> Projects</a>
+            <a href="#skills"><sup aria-hidden="true">03</sup> Skills</a>
+            <a href="#contact"><sup aria-hidden="true">04</sup> Contact</a>
         </div>
         <div class="nav-right">
             <span class="nav-time" data-clock="short">--:--</span>
@@ -59,7 +72,8 @@
             </h1>
             <p class="hero-line anim-rise">
                 B.Tech CSE @ <strong>IIT Bombay</strong> <span class="accent">·</span>
-                <span id="typewriter"></span><span class="type-cursor">▌</span>
+                <span class="sr-only">builder, problem solver, quant enthusiast, competitive programmer, and robotics tinkerer.</span>
+                <span id="typewriter" aria-hidden="true"></span><span class="type-cursor" aria-hidden="true">▌</span>
             </p>
             <div class="hero-status anim-rise">
                 <span class="status-item"><span class="pulse-dot"></span>OPEN TO OPPORTUNITIES</span>
@@ -68,9 +82,9 @@
             </div>
             <div class="hero-cta anim-rise">
                 <a class="btn" data-magnetic href="mailto:rutviksai18@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-                <a class="btn" data-magnetic href="https://github.com/Rutvik-294" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                <a class="btn" data-magnetic href="https://www.linkedin.com/in/rutviksai18/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a class="btn" data-magnetic href="https://codeforces.com/profile/RutvikSai" target="_blank"><i class="fas fa-code"></i> Codeforces</a>
+                <a class="btn" data-magnetic href="https://github.com/Rutvik-294" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+                <a class="btn" data-magnetic href="https://www.linkedin.com/in/rutviksai18/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a class="btn" data-magnetic href="https://codeforces.com/profile/RutvikSai" target="_blank" rel="noopener noreferrer"><i class="fas fa-code"></i> Codeforces</a>
             </div>
         </div>
         <a class="scroll-cue" href="#education" aria-label="Scroll down">
@@ -86,7 +100,7 @@
         </div>
     </div>
 
-    <main class="container">
+    <main class="container" id="main">
 
         <!-- 01 EDUCATION & PROGRAMS -->
         <section id="education">
@@ -136,13 +150,13 @@
                         <h4>Jane Street SEE Program</h4>
                         <span class="date">2026</span>
                     </div>
-                    <p>Cleared the online assignment round of Jane Street's selection process.</p>
+                    <p>Cleared the online assignment round of Jane Street’s selection process.</p>
                     <hr class="divider">
                     <div class="item-header">
                         <h4>Optiver Future Focus Program <span class="pulse-dot" title="Upcoming"></span></h4>
                         <span class="date">NOV 30 — DEC 5, 2026</span>
                     </div>
-                    <p>Selected for Optiver's Future Focus Program — a week-long immersion into quantitative trading, markets, and the technology behind modern market making.</p>
+                    <p>Selected for Optiver’s Future Focus Program — a week-long immersion into quantitative trading, markets, and the technology behind modern market making.</p>
                 </section>
             </div>
         </section>
@@ -159,10 +173,10 @@
                 <!-- 01 SATviz -->
                 <article class="vpanel spot" data-cat="systems">
                     <span class="badge-new">NEW</span>
-                    <span class="vnum">01</span>
+                    <span class="vnum" aria-hidden="true">01</span>
                     <div class="vpanel-head">
                         <h3>SATviz</h3>
-                        <a class="vlink" href="https://github.com/Rutvik-294/SATviz" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                        <a class="vlink" href="https://github.com/Rutvik-294/SATviz" target="_blank" rel="noopener noreferrer" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
                     </div>
                     <p class="vdesc">Two dependency-free SAT solvers — CDCL &amp; DPLL — packaged as a runnable JAR, plus a Swing visualizer that animates how each one thinks: implication graphs, clause learning, conflicts pulsing rose, and backjumps sweeping in real time.</p>
                     <div class="vmeta">
@@ -174,12 +188,12 @@
                 <!-- 02 pysat -->
                 <article class="vpanel spot" data-cat="systems">
                     <span class="badge-new">NEW</span>
-                    <span class="vnum">02</span>
+                    <span class="vnum" aria-hidden="true">02</span>
                     <div class="vpanel-head">
                         <h3>pysat</h3>
-                        <a class="vlink" href="https://github.com/Rutvik-294/pysat" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                        <a class="vlink" href="https://github.com/Rutvik-294/pysat" target="_blank" rel="noopener noreferrer" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
                     </div>
-                    <p class="vdesc">A conflict-driven clause-learning SAT solver implementing the MiniSat architecture in ~600 lines of dependency-free Python, with an interactive terminal visualizer animating CDCL and DPLL search step by step.</p>
+                    <p class="vdesc">A conflict-driven clause-learning SAT solver implementing the MiniSat architecture in ~600&nbsp;lines of dependency-free Python, with an interactive terminal visualizer animating CDCL and DPLL search step by step.</p>
                     <div class="vmeta">
                         <div class="tag-row"><span class="tag">Python</span><span class="tag">CDCL</span><span class="tag">Algorithms</span></div>
                         <span class="proj-date">NOV 2026</span>
@@ -189,12 +203,12 @@
                 <!-- 03 NPOPS -->
                 <article class="vpanel spot" data-cat="systems">
                     <span class="badge-new">NEW</span>
-                    <span class="vnum">03</span>
+                    <span class="vnum" aria-hidden="true">03</span>
                     <div class="vpanel-head">
                         <h3>NPOPS</h3>
-                        <a class="vlink" href="https://github.com/Rutvik-294/NPOPS" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                        <a class="vlink" href="https://github.com/Rutvik-294/NPOPS" target="_blank" rel="noopener noreferrer" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
                     </div>
-                    <p class="vdesc">North Pole Operations Platform — an enterprise logistics &amp; manufacturing SaaS for Santa's Workshop: vehicle-route optimization for the global delivery run, MRP production scheduling, inventory control, and live sleigh tracking. All in one zero-dependency Python package.</p>
+                    <p class="vdesc">North Pole Operations Platform — an enterprise logistics &amp; manufacturing SaaS for Santa’s Workshop: vehicle-route optimization for the global delivery run, MRP production scheduling, inventory control, and live sleigh tracking. All in one zero-dependency Python package.</p>
                     <div class="vmeta">
                         <div class="tag-row"><span class="tag">Python</span><span class="tag">Optimization</span><span class="tag">SaaS</span></div>
                         <span class="proj-date">NOV 2026</span>
@@ -204,10 +218,10 @@
                 <!-- 04 DAI -->
                 <article class="vpanel spot" data-cat="course">
                     <span class="badge-new">NEW</span>
-                    <span class="vnum">04</span>
+                    <span class="vnum" aria-hidden="true">04</span>
                     <div class="vpanel-head">
                         <h3>Student Lifestyle Analysis</h3>
-                        <a class="vlink" href="https://github.com/svschakri/CS-215-DAI_project" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                        <a class="vlink" href="https://github.com/svschakri/CS-215-DAI_project" target="_blank" rel="noopener noreferrer" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
                     </div>
                     <p class="vdesc">CS-215 Data Analysis &amp; Interpretation course project (team of four): pre-processed a 2,000-record student-lifestyle dataset, ran EDA with visualisations and correlation analysis, implemented linear regression from scratch using NumPy normal equations, and demonstrated the Central Limit Theorem through simulation.</p>
                     <div class="vmeta">
@@ -219,10 +233,10 @@
                 <!-- 04 CSEA Meme Arena -->
                 <article class="vpanel spot" data-cat="web">
                     <span class="badge-new">NEW</span>
-                    <span class="vnum">05</span>
+                    <span class="vnum" aria-hidden="true">05</span>
                     <div class="vpanel-head">
                         <h3>CSEA Meme Arena</h3>
-                        <a class="vlink" href="https://github.com/Rutvik-294/CSEA" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                        <a class="vlink" href="https://github.com/Rutvik-294/CSEA" target="_blank" rel="noopener noreferrer" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
                     </div>
                     <p class="vdesc">Meme-sharing and voting platform for the CSE department at IIT Bombay — head-to-head Elo-rated meme battles, leaderboards, presigned S3 uploads, and admin moderation with LDAP auth.</p>
                     <div class="vmeta">
@@ -234,10 +248,10 @@
                 <!-- 05 duochat -->
                 <article class="vpanel spot" data-cat="web">
                     <span class="badge-new">NEW</span>
-                    <span class="vnum">06</span>
+                    <span class="vnum" aria-hidden="true">06</span>
                     <div class="vpanel-head">
                         <h3>Glass Messenger (duochat)</h3>
-                        <a class="vlink" href="https://github.com/Rutvik-294/duochat" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                        <a class="vlink" href="https://github.com/Rutvik-294/duochat" target="_blank" rel="noopener noreferrer" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
                     </div>
                     <p class="vdesc">Real-time chat application built and iterated end-to-end — from backend logic to a polished glass-morphic frontend, heading toward full-scale deployment.</p>
                     <div class="vmeta">
@@ -249,12 +263,12 @@
                 <!-- 06 Catan agent -->
                 <article class="vpanel spot" data-cat="aiml">
                     <span class="badge-new">NEW</span>
-                    <span class="vnum">07</span>
+                    <span class="vnum" aria-hidden="true">07</span>
                     <div class="vpanel-head">
                         <h3>Catan AI Agent</h3>
-                        <a class="vlink" href="https://github.com/Rutvik-294/catan-agent" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                        <a class="vlink" href="https://github.com/Rutvik-294/catan-agent" target="_blank" rel="noopener noreferrer" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
                     </div>
-                    <p class="vdesc">PIMC agent built on the catanatron engine for a Catan hackathon — samples K complete hidden-information worlds per decision, scores actions by mean value-function payoff, and time-budgets every move inside a strict ~12.5 ms clock.</p>
+                    <p class="vdesc">PIMC agent built on the catanatron engine for a Catan hackathon — samples K complete hidden-information worlds per decision, scores actions by mean value-function payoff, and time-budgets every move inside a strict ~12.5&nbsp;ms clock.</p>
                     <div class="vmeta">
                         <div class="tag-row"><span class="tag">Python</span><span class="tag">Game AI</span><span class="tag">Search</span></div>
                         <span class="proj-date">OCT 2026</span>
@@ -264,26 +278,26 @@
                 <!-- 07 Game Theory -->
                 <article class="vpanel spot" data-cat="course">
                     <span class="badge-new">NEW</span>
-                    <span class="vnum">08</span>
+                    <span class="vnum" aria-hidden="true">08</span>
                     <div class="vpanel-head">
                         <h3>Game Theory</h3>
-                        <a class="vlink" href="https://github.com/Rutvik-294/LearnerSpace2K26" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                        <a class="vlink" href="https://github.com/Rutvik-294/LearnerSpace2K26" target="_blank" rel="noopener noreferrer" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
                     </div>
-                    <p class="vdesc">Learner's Space course covering strategies, the Prisoner's Dilemma, payoff analysis, and finding optimal strategies — including Nash equilibria (pure-strategy) and strictly/weakly dominated strategies.</p>
+                    <p class="vdesc">Learner’s Space course covering strategies, the Prisoner’s Dilemma, payoff analysis, and finding optimal strategies — including Nash equilibria (pure-strategy) and strictly/weakly dominated strategies.</p>
                     <div class="vmeta">
-                        <div class="tag-row"><span class="tag">Learner's Space</span><span class="tag">Game Theory</span></div>
+                        <div class="tag-row"><span class="tag">Learner’s Space</span><span class="tag">Game Theory</span></div>
                         <span class="proj-date">2026</span>
                     </div>
                 </article>
 
                 <!-- 08 SOC LLM -->
                 <article class="vpanel spot" data-cat="aiml">
-                    <span class="vnum">09</span>
+                    <span class="vnum" aria-hidden="true">09</span>
                     <div class="vpanel-head">
                         <h3>Tokens to Translations (LLM)</h3>
-                        <a class="vlink" href="https://github.com/Rutvik-294/SOC_Tokens_to_Translations" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                        <a class="vlink" href="https://github.com/Rutvik-294/SOC_Tokens_to_Translations" target="_blank" rel="noopener noreferrer" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
                     </div>
-                    <p class="vdesc">Built an English→Spanish translation model on an internet-sourced parallel dataset using RNNs, LSTMs, and attention. Implemented tokenization from a bigram model up — following Karpathy's lectures — and manual backprop by hand for a ground-up understanding of training.</p>
+                    <p class="vdesc">Built an English→Spanish translation model on an internet-sourced parallel dataset using RNNs, LSTMs, and attention. Implemented tokenization from a bigram model up — following Karpathy’s lectures — and manual backprop by hand for a ground-up understanding of training.</p>
                     <div class="vmeta">
                         <div class="tag-row"><span class="tag">Seasons of Code</span><span class="tag">LLM</span></div>
                         <span class="proj-date">SUMMER 2026</span>
@@ -292,7 +306,7 @@
 
                 <!-- 09 RL -->
                 <article class="vpanel spot" data-cat="aiml">
-                    <span class="vnum">10</span>
+                    <span class="vnum" aria-hidden="true">10</span>
                     <div class="vpanel-head">
                         <h3>Reinforcement Learning</h3>
                     </div>
@@ -305,10 +319,10 @@
 
                 <!-- 10 Snake Stack -->
                 <article class="vpanel spot" data-cat="web">
-                    <span class="vnum">11</span>
+                    <span class="vnum" aria-hidden="true">11</span>
                     <div class="vpanel-head">
                         <h3>Full-Stack Snake Game</h3>
-                        <a class="vlink" href="https://github.com/Rutvik-294/Snake_Stack" target="_blank" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
+                        <a class="vlink" href="https://github.com/Rutvik-294/Snake_Stack" target="_blank" rel="noopener noreferrer" aria-label="GitHub repo"><i class="fab fa-github"></i></a>
                     </div>
                     <p class="vdesc">Developed a multi-layered game using a three-tier architecture (Client-Server-Database) with real-time gameplay.</p>
                     <div class="vmeta">
@@ -319,7 +333,7 @@
 
                 <!-- 11 Snitch -->
                 <article class="vpanel spot" data-cat="course">
-                    <span class="vnum">12</span>
+                    <span class="vnum" aria-hidden="true">12</span>
                     <div class="vpanel-head">
                         <h3>Business Case Study: Snitch</h3>
                     </div>
@@ -332,7 +346,7 @@
 
                 <!-- 12 XLR8 -->
                 <article class="vpanel spot" data-cat="hardware">
-                    <span class="vnum">13</span>
+                    <span class="vnum" aria-hidden="true">13</span>
                     <div class="vpanel-head">
                         <h3>Autonomous Robot (XLR8)</h3>
                     </div>
@@ -345,11 +359,11 @@
 
                 <!-- 13 MS101 -->
                 <article class="vpanel spot" data-cat="hardware">
-                    <span class="vnum">14</span>
+                    <span class="vnum" aria-hidden="true">14</span>
                     <div class="vpanel-head">
                         <h3>Load-Dumping Robot (MS101)</h3>
                     </div>
-                    <p class="vdesc">Designed the chassis and dumping mechanism in Autodesk Fusion 360, fabricated via laser cutting and 3D printing, and built a custom wireless controller — carrying a threshold payload up a 30° incline.</p>
+                    <p class="vdesc">Designed the chassis and dumping mechanism in Autodesk Fusion 360, fabricated via laser cutting and 3D printing, and built a custom wireless controller — carrying a threshold payload up a 30°&nbsp;incline.</p>
                     <div class="vmeta">
                         <div class="tag-row"><span class="tag">Robotics</span></div>
                         <span class="proj-date">2025</span>
@@ -442,21 +456,21 @@
             </div>
             <div class="contact-block reveal">
                 <a class="talk" data-magnetic href="mailto:rutviksai18@gmail.com">
-                    <span class="talk-text">LET'S TALK</span>
+                    <span class="talk-text">LET’S&nbsp;TALK</span>
                     <i class="fas fa-arrow-right talk-arrow"></i>
                 </a>
                 <p class="contact-sub">Always happy to talk about code, markets, or new ideas.</p>
                 <div class="hero-cta">
                     <a class="btn" data-magnetic href="mailto:rutviksai18@gmail.com"><i class="fas fa-envelope"></i> rutviksai18@gmail.com</a>
                     <a class="btn" data-magnetic href="tel:+919381757804"><i class="fas fa-phone"></i> +91-9381757804</a>
-                    <a class="btn" data-magnetic href="https://github.com/Rutvik-294" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                    <a class="btn" data-magnetic href="https://www.linkedin.com/in/rutviksai18/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a class="btn" data-magnetic href="https://github.com/Rutvik-294" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+                    <a class="btn" data-magnetic href="https://www.linkedin.com/in/rutviksai18/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i> LinkedIn</a>
                 </div>
             </div>
         </section>
 
         <footer>
-            <p>© <span id="year">2026</span> RUTVIK SAI — BUILT FROM SCRATCH — <a href="https://github.com/Rutvik-294/Rutvik-294.github.io" target="_blank">VIEW SOURCE <i class="fab fa-github"></i></a></p>
+            <p>© <span id="year">2026</span> RUTVIK SAI — BUILT FROM SCRATCH — <a href="https://github.com/Rutvik-294/Rutvik-294.github.io" target="_blank" rel="noopener noreferrer">VIEW SOURCE <i class="fab fa-github"></i></a></p>
         </footer>
 
     </main>

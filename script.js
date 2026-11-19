@@ -19,22 +19,41 @@
     /* ---------- theme ---------- */
     const themeToggle = document.getElementById("theme-toggle");
     const themeIcon = themeToggle.querySelector("i");
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+
+    // keep the browser UI (address bar) and the button label in sync with the theme
+    const syncThemeUI = (theme) => {
+        themeMeta?.setAttribute("content", theme === "dark" ? "#08090c" : "#eef1f7");
+        themeToggle.setAttribute("aria-label", theme === "dark" ? "Switch to light theme" : "Switch to dark theme");
+    };
 
     themeToggle.addEventListener("click", () => {
         const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
         document.documentElement.setAttribute("data-theme", next);
         localStorage.setItem("theme", next);
         themeIcon.className = next === "dark" ? "fas fa-sun" : "fas fa-moon";
+        syncThemeUI(next);
     });
     themeIcon.className =
         (localStorage.getItem("theme") || "dark") === "dark" ? "fas fa-sun" : "fas fa-moon";
+    syncThemeUI(localStorage.getItem("theme") || "dark");
 
-    /* ---------- scroll progress ---------- */
+    /* ---------- scroll: progress bar + hero parallax (rAF-throttled, compositor-only) ---------- */
     const progressBar = document.getElementById("progress-bar");
-    addEventListener("scroll", () => {
-        const h = document.documentElement.scrollHeight - innerHeight;
-        progressBar.style.width = (h > 0 ? (scrollY / h) * 100 : 0) + "%";
-    }, { passive: true });
+    const heroCanvas = document.getElementById("field");
+    let scrollQueued = false;
+    const onScroll = () => {
+        if (scrollQueued) return;
+        scrollQueued = true;
+        requestAnimationFrame(() => {
+            scrollQueued = false;
+            const h = document.documentElement.scrollHeight - innerHeight;
+            progressBar.style.transform = `scaleX(${h > 0 ? Math.min(scrollY / h, 1) : 0})`;
+            if (heroCanvas) heroCanvas.style.transform = `translateY(${scrollY * 0.14}px)`;
+        });
+    };
+    addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
 
     /* ---------- custom cursor ---------- */
     if (interactive) {
@@ -79,10 +98,15 @@
             document.documentElement.getAttribute("data-theme") === "light" ? "16, 16, 20" : "235, 235, 235";
 
         function resize() {
-            W = hero.offsetWidth; H = hero.offsetHeight;
+            const w = hero.offsetWidth, h = hero.offsetHeight;
+            // only reseed when the width actually changes — mobile URL-bar show/hide
+            // alters height without a real viewport change, and reseeding jumps
+            const reseed = pts.length === 0 || Math.abs(w - W) > 1;
+            W = w; H = h;
             canvas.width = W * DPR; canvas.height = H * DPR;
             ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-            seed(); if (!running) draw();
+            if (reseed) seed();
+            if (!running) draw();
         }
 
         function seed() {
@@ -150,11 +174,6 @@
             mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
         }, { passive: true });
         hero.addEventListener("mouseleave", () => { mouse.x = -9999; mouse.y = -9999; });
-
-        // parallax drift on scroll
-        addEventListener("scroll", () => {
-            canvas.style.transform = `translateY(${scrollY * 0.14}px)`;
-        }, { passive: true });
 
         new IntersectionObserver((en) => en[0].isIntersecting ? start() : stop()).observe(hero);
         document.addEventListener("visibilitychange", () => document.hidden ? stop() : start());
